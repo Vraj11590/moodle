@@ -1,6 +1,6 @@
 <?php
-//$url = 'http://web.njit.edu/~gt35/moodle_mvc/models/student/student_model.class.php';
-$url = 'http://web.njit.edu/~vp78/m++/test.php';
+$url = 'http://web.njit.edu/~gt35/moodle/middle/login_control.php';
+//$url = 'http://web.njit.edu/~vp78/m++/test.php';
 
 $postdata = array("ucid" => $_POST["ucid"], "password" => $_POST["password"]);
 
