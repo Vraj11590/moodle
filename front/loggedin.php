@@ -17,13 +17,13 @@
     <body>
 
 
-	<form action="front/clientproxy.php" method="post">
+	<form action="logout.php" method="post">
 
  		UCID: <input type="text" name="ucid" />
 		<br/>
  		Password: <input type="text" name="password" />
 
- 		<input type="submit" />
+ 		<input type="submit" text = "logout"/>
 
  	</form>
  
