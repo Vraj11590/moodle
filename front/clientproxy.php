@@ -20,8 +20,8 @@ if($result){
 	// $_SESSION['NAME'] = $result_row->name;
 	$_SESSION['user_logged_in'] = 1;
                         
-	setcookie("ucid", $result_row->ucid, time() + (3600*24*100));
-	setcookie("type", $result_row->type, time() + (3600*24*100));
+	setcookie("ucid", $_POST['ucid'], time() + (3600*24*100));
+	//setcookie("type", $result_row->type, time() + (3600*24*100));
                         
 	echo "Printed inside clientproxy.php";
 	print_r($result);

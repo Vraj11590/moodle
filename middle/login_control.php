@@ -26,7 +26,7 @@
             if($_POST['password'] == $result_row->password)
                     {	
 						$url = 'http://localhost/moodle/back/simplexmlreturn.php'
-						//$url = 'http://web.njit.edu/~vp78/moodle/middle/login_control.php';
+						//$url = 'http://web.njit.edu/~thh4/xmlFormat.php';
 
 						//$postdata = array('ucid' => $_POST["ucid"], 'password' => $_POST["password"]);
 						$postdata = $ucid;
