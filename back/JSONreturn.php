@@ -18,11 +18,8 @@ echo '<p>Database selected</p>';
 				AND 	s.courseid = c.courseid
 				AND 	s.teacherid = u.ucid");
 	   while($row = mysql_fetch_array($result)){															
-<<<<<<< HEAD:back/simpleJASONreturn
        echo json_encode(array($row['semesterid'],$row['crn'],$row['courseid'], $row['coursename'], $row['sectionid'], $row['teachername'])); 
-=======
-       echo json_encode(array($row['crn'],$row['courseid'], $row['coursename'], $row['sectionid'], $row['teachername'])); 
->>>>>>> working json return:back/JSONreturn.php
+//       echo json_encode(array($row['crn'],$row['courseid'], $row['coursename'], $row['sectionid'], $row['teachername'])); 
 	}
 	?>
 
