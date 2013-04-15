@@ -8,16 +8,15 @@ echo ' <p>Connected successfully</p>';
 
 mysql_select_db("thh4") or die(mysql_error());
 echo '<p>Database selected</p>';
-  $result = mysql_query("  SELECT 	e.ucid as studentid,
-																	c.courseid AS courseid, c.coursename AS coursename,
-																	s.crn AS crn, s.sectionid AS sectionid, s.semesterid AS semesterid,
-																	u.name AS teachername
-															FROM 	sections AS s, enrolled AS e, courses AS c, users AS u
-															WHERE 	e.ucid = 'thh4'
-																AND s.semesterid = 'Spring2013'
-																AND e.crn = s.crn
-																AND s.courseid = c.courseid
-																AND s.teacherid = u.ucid");
+  $result = mysql_query("  	SELECT 	e.ucid as studentid,
+					c.courseid AS courseid, c.coursename AS coursename,
+								s.crn AS crn, s.sectionid AS sectionid, s.semesterid AS semesterid,
+								u.name AS teachername
+				FROM 	sections AS s, enrolled AS e, courses AS c, users AS u
+				WHERE 	e.ucid = 'thh4'
+				AND 	e.crn = s.crn
+				AND 	s.courseid = c.courseid
+				AND 	s.teacherid = u.ucid");
 	   while($row = mysql_fetch_array($result)){															
        echo json_encode(array($row['crn'],$row['courseid'], $row['coursename'], $crn, $row['sectionid'], $row['teacherid'])); 
 	}
