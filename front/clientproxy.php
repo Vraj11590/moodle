@@ -14,6 +14,15 @@ $result = curl_exec ($c);
 curl_close ($c); 
 
 if($result){
+	session_start();
+	$_SESSION['UCID'] = $_POST['ucid'];
+    // $_SESSION['TYPE'] = $result_row->type;
+	// $_SESSION['NAME'] = $result_row->name;
+	$_SESSION['user_logged_in'] = 1;
+                        
+	setcookie("ucid", $result_row->ucid, time() + (3600*24*100));
+	setcookie("type", $result_row->type, time() + (3600*24*100));
+                        
 	echo "Printed inside clientproxy.php";
 	print_r($result);
 	

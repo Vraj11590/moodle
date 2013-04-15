@@ -24,18 +24,31 @@
 			// echo '<br> rec u:';
             // echo($result_row->name);
             if($_POST['password'] == $result_row->password)
-                    {
-						
-                        $_SESSION['UCID'] = $result_row->ucid;
-                        $_SESSION['TYPE'] = $result_row->type;
-                        $_SESSION['NAME'] = $result_row->name;
-                        $_SESSION['user_logged_in'] = 1;
+                    {	
+						$url = 'http://localhost/moodle/back/simplexmlreturn.php'
+						//$url = 'http://web.njit.edu/~vp78/moodle/middle/login_control.php';
+
+						//$postdata = array('ucid' => $_POST["ucid"], 'password' => $_POST["password"]);
+						$postdata = $ucid;
+						$c = curl_init();
+						curl_setopt($c, CURLOPT_HTTPHEADER, array('Content-Type' => 'application/xml'));
+						curl_setopt($c, CURLOPT_URL, $url);
+						curl_setopt($c, CURLOPT_POST, true);
+						curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($c, CURLOPT_POSTFIELDS,$postdata);
+						$result = curl_exec ($c); 
+						curl_close ($c); 
+							//sessin may need to be set in front
+                        // $_SESSION['UCID'] = $result_row->ucid;
+                        // $_SESSION['TYPE'] = $result_row->type;
+                        // $_SESSION['NAME'] = $result_row->name;
+                        // $_SESSION['user_logged_in'] = 1;
                         
-                        setcookie("ucid", $result_row->ucid, time() + (3600*24*100));
-                        setcookie("type", $result_row->type, time() + (3600*24*100));
+                        // setcookie("ucid", $result_row->ucid, time() + (3600*24*100));
+                        // setcookie("type", $result_row->type, time() + (3600*24*100));
                         
                        // $user_is_logged_in = true;
-                        echo 'logged in';
+                        echo $result;
                  
                     } else {
                         
