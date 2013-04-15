@@ -35,18 +35,19 @@
                         setcookie("type", $result_row->type, time() + (3600*24*100));
                         
                        // $user_is_logged_in = true;
-                        echo 'logged in';
+                        echo json_encode(array("flag" => true, "name" => $result_row->name));
+			//return true;
                  
                     } else {
                         
-                        $errors[] = "Wrong Password.";
-						echo 'wrong password';
+                        //$errors[] = "Wrong Password.";
+			echo 'false';
                         return false;
                     }
 
         }
        else{
-            $errors[] = "This user does not exist.";
+            //$errors[] = "This user does not exist.";
             return false;
             }
 
