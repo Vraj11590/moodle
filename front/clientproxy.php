@@ -1,6 +1,6 @@
 <?php
-$url = 'http://web.njit.edu/~gt35/moodle/middle/login_control.php';
-//$url = 'http://web.njit.edu/~vp78/m++/test.php';
+//$url = 'http://web.njit.edu/~gt35/moodle/middle/login_control.php';
+$url = 'http://web.njit.edu/~vp78/moodle/middle/login_control.php';
 
 $postdata = array('ucid' => $_POST["ucid"], 'password' => $_POST["password"]);
 
@@ -12,8 +12,6 @@ curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($c, CURLOPT_POSTFIELDS,$postdata);
 $result = curl_exec ($c); 
 curl_close ($c); 
-
-
 
 if($result){
 	echo "Printed inside clientproxy.php";
