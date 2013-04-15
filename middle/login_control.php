@@ -25,11 +25,11 @@
             // echo($result_row->name);
             if($_POST['password'] == $result_row->password)
                     {	
-						$url = 'http://localhost/moodle/back/simplexmlreturn.php'
+						$url = 'http://localhost/moodle/back/simplexmlreturn.php';
 						//$url = 'http://web.njit.edu/~thh4/xmlFormat.php';
 
 						//$postdata = array('ucid' => $_POST["ucid"], 'password' => $_POST["password"]);
-						$postdata = $ucid;
+						$postdata = array('ucid' => $ucid);
 						$c = curl_init();
 						curl_setopt($c, CURLOPT_HTTPHEADER, array('Content-Type' => 'application/xml'));
 						curl_setopt($c, CURLOPT_URL, $url);

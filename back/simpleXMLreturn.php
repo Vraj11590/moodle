@@ -8,7 +8,7 @@ echo ' <p>Connected successfully</p>';
 
 mysql_select_db("thh4") or die(mysql_error());
 echo '<p>Database selected</p>';
-$_POST = $ucid;
+$ucid = $_POST['ucid'];
   $result = mysql_query("	SELECT 	e.ucid as studentid,
 																	c.courseid AS courseid, c.coursename AS coursename,
 																	s.crn AS crn, s.sectionid AS sectionid, s.semesterid AS semesterid,

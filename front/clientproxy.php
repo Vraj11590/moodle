@@ -1,6 +1,7 @@
 <?php
 //$url = 'http://web.njit.edu/~gt35/moodle/middle/login_control.php';
-$url = 'http://web.njit.edu/~vp78/moodle/middle/login_control.php';
+//$url = 'http://web.njit.edu/~vp78/moodle/middle/login_control.php';
+$url = 'http://localhost/moodle/middle/login_control.php';
 
 $postdata = array('ucid' => $_POST["ucid"], 'password' => $_POST["password"]);
 
