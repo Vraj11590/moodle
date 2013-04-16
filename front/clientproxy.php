@@ -62,8 +62,20 @@ if($result){
 		// echo "something is wrong";
 	// }
 
-}else
+}else{
 	 header("Location: http://localhost/moodle");
+	 }
+	 
+if(isset($_GET['logout'])){
+	
+		$_SESSION = array();
+        session_destroy();
+        $user_is_logged_in = false;
+        //$messages[] = "You have been logged out.";
+        //echo"Logout finished.";
+}
 	//header('HTTP/1.1 500 Internal Server Error');
+	
+
 
 ?>
