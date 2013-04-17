@@ -17,7 +17,7 @@
 		echo $result;
 		
 	}
-	if(isset($_GET['function'])){//just an example of how this would work assume its getSemesters
+	if(isset($_GET['function'])){//just an example of how this would work assume functions is getSemesters
 		$arr = array('ucid' => $_POST['ucid']);
 		getJSON($_GET['function'],$arr);
 	}

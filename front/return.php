@@ -6,6 +6,8 @@
 		getClassInfo
 		getPosts
 		
+		example: getJSON('getSemesters');
+		willl return json object with semesters.
 		cannot be used until these are completed in backend
 		*/
 	function getJSON($value){
