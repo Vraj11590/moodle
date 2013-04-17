@@ -1,4 +1,6 @@
-<style>
+<?php
+	
+?><style>
   .login{
 		background-color:#eee9d5;
 	}
@@ -77,7 +79,7 @@
 	<center class="label"> <label>Login to Moodle++</label> </center>
     <div id="loginwrapper">
     <center>
-        <form id="loginform" action="clientproxy.php" method="post">
+        <form id="loginform" action="index.php" method="post">
              <label> UCID:</label><input type="text" maxlength=6 width:"50px" name="ucid" placeholder="Enter UCID.." required style = "text-align:center; padding:2px;"/>
              <br>
              <br>
