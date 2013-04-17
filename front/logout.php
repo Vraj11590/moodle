@@ -1,6 +1,6 @@
  <?php 
 	 
-		header("Location: http://localhost/moodle/front/clientproxy.php?logout=1");
+		header("Location: http://localhost/moodle/front/clientproxy.php/logout=1");
 		// // $_SESSION = array();
         // // session_destroy();
         // // $user_is_logged_in = false;

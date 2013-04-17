@@ -1,21 +1,22 @@
 <?php
 	
-	include('dbconnection.class.php');
-	include('dbconfig.php');
+
+	include('../resources/header.php');
 	//$connection = new Database();
 	$data = $_POST;
 	
-	if(isset($data['ucid'],$data['password'])){
+
 	$ucid = $data['ucid'];
 	$password = $data['password'];
-	$ucid = $connection->real_escape_string($_POST['ucid']);
+	// $ucid = 'gt35';
+	// $password = 'password';
 	
 	
 	$connection = new mysqli(db_host, db_user, db_pass, db_name); 
-     $checklogin = $connection->query("SELECT ucid,password,name,type FROM users WHERE ucid = '".$ucid."';");
 		if(!$connection){
-			echo "connection failed";
 			}
+	$ucid = $connection->real_escape_string($ucid);
+     $checklogin = $connection->query("SELECT ucid,password,name,type FROM users WHERE ucid = '".$ucid."';");
         if($checklogin->num_rows == 1)
         {
             $result_row = $checklogin->fetch_object();
@@ -24,7 +25,7 @@
             // echo ($_POST['password']);
 			// echo '<br> rec u:';
             // echo($result_row->name);
-            if($_POST['password'] == $result_row->password)
+            if($password == $result_row->password)
                     {	
 						// $url = 'http://localhost/moodle/back/simplexmlreturn.php';//put the curl shit in a fucntion for getinfo
 						// $url = 'http://web.njit.edu/~thh4/xmlFormat.php';
@@ -44,34 +45,10 @@
                         //echo json_encode(array("flag" => true, "name" => $result_row->name));
 						//return true;
                        // echo $result;
-					   $arr  = array('ucid' => $ucid, 'type'=> $result_row->type, 'name'=$result_row->name);
+					   $arr  = array('ucid' => $ucid, 'type'=> $result_row->type, 'name'=> $result_row->name);
 					   echo json_encode($arr);
-                    } else {
-                        
-                        //$errors[] = "Wrong Password.";
-			echo 'false';
-                        return false;
                     }
-
-        }
-       else{
-            //$errors[] = "This user does not exist.";
-            return false;
-            }
-			
 	}
-	
-	if(isset($data['operation'])){
-		if($data['operation'] == 'logout'){
-		$_SESSION = array();
-        session_destroy();
-        $user_is_logged_in = false;
-        $messages[] = "You have been logged out.";
-        echo"Logout finished.";
-		}
-		}
-	//$data["ucid"] = "CHANGED";
-
 	
 	
 ?>
