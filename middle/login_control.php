@@ -3,8 +3,6 @@
 		echo json_encode($arr = array('url'=>$dest, 'auth' => $authV));
 	}
 	session_start();
-	$data = $_POST;
-	$auth = false;
 	if(isset($_GET['logout'])){
 		
 		$_SESSION = array();
@@ -43,7 +41,7 @@
 			$rd =  $urlPath.'/front/login.php?usr404';
 			echoURL($rd,$auth);
 		}
-		}else{
+		}else if($functionCall == false){
 		$rd =  $urlPath.'/front/login.php?nopost';
 		echoURL($rd,$auth);
 	} 

@@ -2,8 +2,12 @@
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <?php 
 	include('../resources/header.php');
+	include('return.php');
+	$arr = array('ucid' => $_GET['ucid']);
+	$x = getJSON('getSemesters',$arr,$urlPath);
+	echo $x;
 	
-	echo '<a a href = '.$urlPath.'/front/index.php?logout> Logout </a><br>';
+	echo '<br><a a href = '.$urlPath.'/front/index.php?logout> Logout </a><br>';
 	echo'<a a href = '.$urlPath.'> Check Session </a>';
 	// $url = $urlPath.'/front/index.php';
 	// //$postdata = array('ucid' => $_POST["ucid"], 'password' => $_POST["password"]);
