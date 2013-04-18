@@ -5,17 +5,17 @@
     
     //config for local db COMMENT OUT DO NOT DELETE
 	
-    define('db_host', "localhost");
-    define('db_name', "thh4");
-    define('db_pass', "password");
-    define('db_user', "localhost");
-    
+    //define('db_host', "localhost");
+    //define('db_name', "thh4");
+    //define('db_pass', "password");
+    //define('db_user', "localhost");
+    //
     //config for njit sql server COMMENT OUT DO NOT DELETE
 	
-    // define('db_host', "sql.njit.edu");
-    // define('db_name', "thh4");
-    // define('db_pass', "yapping45");
-    // define('db_user', "thh4");
+     define('db_host', "sql.njit.edu");
+     define('db_name', "thh4");
+     define('db_pass', "yapping45");
+     define('db_user', "thh4");
     //echo ("dbconfig.php loaded");
 	
 	//default url paths for ease of use
@@ -27,5 +27,6 @@
 	$local = 'http://localhost/moodle';//local
 	//current testing url path you can change $urlPath to 
 	//any of the above to test on your njit webserver, or back to local
-	$urlPath = $local;
+	$urlPath = $local; //local
+        $urlPath = $vp78; //vrajesh
 ?>

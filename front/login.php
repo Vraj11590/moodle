@@ -1,6 +1,7 @@
 <?php
 	
-?><style>
+?>
+<style>
   .login{
 		background-color:#eee9d5;
 	}
