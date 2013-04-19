@@ -4,21 +4,22 @@
 	 //database configuration
     
     //config for local db COMMENT OUT DO NOT DELETE
-	define('db_host', "127.0.0.1");	/**custom var for faster local perfomance, 
+	//define('db_host', "127.0.0.1");
+        /**custom var for faster local perfomance, 
 									need to change config.inc.php localhost 
 									to 127.0.0.1 for any effect*/
 									
    // define('db_host', "localhost");
-    define('db_name', "thh4");
-    define('db_pass', "password");
-    define('db_user', "localhost");
+    //define('db_name', "thh4");
+    //define('db_pass', "password");
+    //define('db_user', "localhost");
     
     //config for njit sql server COMMENT OUT DO NOT DELETE
 	
-    // define('db_host', "sql.njit.edu");
-    // define('db_name', "thh4");
-    // define('db_pass', "yapping45");
-    // define('db_user', "thh4");
+     define('db_host', "sql.njit.edu");
+     define('db_name', "thh4");
+     define('db_pass', "yapping45");
+     define('db_user', "thh4");
 	
     //echo ("dbconfig.php loaded");
 	
@@ -35,5 +36,5 @@
 	/**
 		current path used in all files, can be ovveriden*/
 		global $urlPath;
-	$urlPath = $local;
+	$urlPath = $vp78;
 ?>

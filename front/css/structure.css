@@ -1,0 +1,15 @@
+
+
+
+
+/* @group elements */
+* { margin: 0; padding: 0; }
+html { height: 101%; font-family: Arial, Tahoma, sans-serif; }
+body { font-size: 12px; background: #e8f0f7; line-height: 20px; word-spacing: 0.5px; }
+
+
+
+#container{ }
+    #userpanel{float:right;  padding: 2px; background-color: #eee9d5; border: 1px solid black;}
+    #semesters{float:left; padding: 5px; background-color: #eee9d5;border: 1px solid black;}
+
