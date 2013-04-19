@@ -11,18 +11,17 @@ if (!$link) {
 mysql_select_db("thh4") or die(mysql_error());
 
 $ucid = $_POST['ucid'];
-  $result = mysql_query("  SELECT DISTINCT s.semesterid AS semesterid
-  													  FROM sections AS s, enrolled AS e
-														  WHERE e.crn = s.crn
+  $result = mysql_query(" 	SELECT DISTINCT s.semesterid AS semesterid
+  				FROM sections AS s, enrolled AS e
+				WHERE e.crn = s.crn
 															AND e.ucid =  '".ucid."'");
 	   while($row = mysql_fetch_array($result)){															
        echo json_encode(array($row['semesterid']));
        
-       $array=array($row['semesterid']);//example dummy data
+ 
 
 	}
    
-      $arr=array('semester'=>$array);
-      echo json_encode($arr);
+
 ?>
 
