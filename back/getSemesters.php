@@ -1,7 +1,28 @@
 <?php
 //gets information from database, places into array with correct tags and echoes it encoded in json.
-$ucid = $_POST['ucid'];//passed through curl from control.
-$array=array('20121','20122','20123','20131','20132','20133');//example dummy data
-$arr = array('semesters'=>$array);
-echo json_encode($arr);//control can retrieve this through curl and pass to front
+//passed through curl from control.
+<?php
+
+
+$link = mysql_connect('sql.njit.edu', 'thh4', 'yapping45');
+if (!$link) {
+    die(' Could not connect: ' . mysql_error());//Connected successfully
+
+mysql_select_db("thh4") or die(mysql_error());
+
+$ucid = $_POST['ucid'];
+  $result = mysql_query("  SELECT DISTINCT s.semesterid AS semesterid
+  													  FROM sections AS s, enrolled AS e
+														  WHERE e.crn = s.crn
+															AND e.ucid =  '".ucid."'");
+	   while($row = mysql_fetch_array($result)){															
+       echo json_encode(array($row['semesterid']));
+       
+       $array=array($row['semesterid']);//example dummy data
+
+	}
+   
+      $arr=array('semester'=>$array);
+      echo json_encode($arr);
 ?>
+
