@@ -31,22 +31,22 @@
 	    
 	</div>
     </div>
+
     
-    
-<script>
-	var semester = 	<?php echo ( getJSON('getSemesters',$arr,$urlPath) ); ?>;
-	//alert(test);
-	//alert(test.semesters[0]);
-	//
-	var len = semester.semesters.length;
-	for(var i = 0; i<len; i++)
-	{
-	    $("#sel_semester").append($('<option></option>').attr("value", semester.semesters[i]).text(semester.semesters[i]));
-	}
+    <script>
+	var obj =  <?php echo ( getJSON('getSemesters',$arr,$urlPath) ); ?> ;
+
+	var len = obj.length;
+
 	
-	$("#sel_semester").change(function(){
-		    alert($("#sel_semester").val());
-	});
+	//for(var i = 0; i<len; i++)
+	//{
+	//    $("#sel_semester").append($('<option></option>').attr("value", semester.semesters[i]).text(semester.semesters[i]));
+	//}
+	//
+	//$("#sel_semester").change(function(){
+	//	    alert($("#sel_semester").val());
+	//});
 	
 
 </script>
