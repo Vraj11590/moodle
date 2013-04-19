@@ -34,19 +34,19 @@
 
     
     <script>
-	var obj =  <?php echo ( getJSON('getSemesters',$arr,$urlPath) ); ?> ;
+	var semester =  <?php echo ( getJSON('getSemesters',$arr,$urlPath) ); ?> ;
 
-	var len = obj.length;
-
+	var len = semester.semesters.length;
+	alert(len);
 	
-	//for(var i = 0; i<len; i++)
-	//{
-	//    $("#sel_semester").append($('<option></option>').attr("value", semester.semesters[i]).text(semester.semesters[i]));
-	//}
-	//
-	//$("#sel_semester").change(function(){
-	//	    alert($("#sel_semester").val());
-	//});
+	for(var i = 0; i<len; i++)
+	{
+	    $("#sel_semester").append($('<option></option>').attr("value", semester.semesters[i]).text(semester.semesters[i]));
+	}
+	
+	$("#sel_semester").change(function(){
+		    alert($("#sel_semester").val());
+	});
 	
 
 </script>

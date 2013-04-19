@@ -12,23 +12,21 @@ if (!$link) {
 
             mysql_select_db("thh4") or die(mysql_error());
     
-            $array = array();
             
             $ucid = $_POST['ucid'];
-            $result = mysql_query("  SELECT DISTINCT s.semesterid 
+            $result = mysql_query("  SELECT DISTINCT s.semesterid  
                                      FROM sections AS s, enrolled AS e
                                      WHERE e.crn = s.crn
 				     AND e.ucid =  '".$ucid."'");
 	   $i = 0;
-           while($row = mysql_fetch_array($result))
+	   $d = array();
+           while($row = mysql_fetch_assoc($result))
             {
-               $i++;	
-               $array += array($row);
+		//$d = ('semesters' => $row);
+	        echo json_encode($row);
             }
 
-            echo json_encode($array);
-    
-//$array = array('2012','2013');  
+//$array = array('2012','2013','2014');  
 //$a = array('semesters'=>$array);
 //echo json_encode($a);
 ?>
