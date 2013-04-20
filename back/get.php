@@ -57,12 +57,18 @@
 	if(isset($_GET['f'])){// check if function field is set
 		$f = $_GET['f'];
 		$u = $_POST['ucid'];
+		$s = $_POST['semesterid'];
+		$c = $_POST['crn'];
+
 		if($f == 'getSemesters'){
 			echo json_encode(getSemesters($u));
 		}
 		if($f == 'getClasses'){
-			echo json_encode("test");
+			echo json_encode(getClasses($u,$s);
 			
+		}
+		if($f == 'getPosts'){
+			echo json_encode(getPosts($crn);
 		}
 	}else echo "function not set";
 ?>
