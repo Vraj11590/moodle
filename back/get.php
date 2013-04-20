@@ -68,7 +68,7 @@
 			
 		}
 		if($f == 'getPosts'){
-			echo json_encode(getPosts($crn);
+			echo json_encode(getPosts($c);
 		}
 	}else echo "function not set";
 ?>
