@@ -3,7 +3,7 @@
 	*/
 	
 	function getJSON($value,$postval,$urlPath){
-		$url = $urlPath.'/back/'.$value.'.php';
+		$url = $urlPath.'/back/get.php?f='.$value;
 		$postdata = $postval;
 		$c = curl_init();
 		curl_setopt($c, CURLOPT_FOLLOWLOCATION,true);

@@ -23,7 +23,7 @@
 <body>
     <div id="container">
 	<div id="userpanel">
-	    <label>Hello, <?php echo($_GET['name']); ?> </label>
+	    <label>Hello, <?php //echo($_GET['name']); ?> </label>
 	</div>
 	
 	<div id="semesters">
@@ -37,7 +37,7 @@
 	var semester =  <?php echo ( getJSON('getSemesters',$arr,$urlPath) ); ?> ;
 
 	var len = semester.semesters.length;
-	alert(len);
+	//alert(len);
 	
 	for(var i = 0; i<len; i++)
 	{

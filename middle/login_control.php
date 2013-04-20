@@ -19,10 +19,9 @@
 	if(isset($data["ucid"],$data["password"])){	
 		$ucid = $data['ucid'];
 		$password = $data['password'];	
-		$connection = new mysqli(db_host, db_user, db_pass, db_name); 
 		
-		$ucid = $connection->real_escape_string($ucid);
-		$checklogin = $connection->query("SELECT ucid,password,name,type FROM users WHERE ucid = '".$ucid."';");
+		$ucid = $con->real_escape_string($ucid);
+		$checklogin = $con->query("SELECT ucid,password,name,type FROM users WHERE ucid = '".$ucid."';");
         if($checklogin->num_rows == 1)
         {
             $result_row = $checklogin->fetch_object();
