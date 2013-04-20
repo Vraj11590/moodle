@@ -11,7 +11,6 @@
 	if(isset($_SESSION['ucid'])){
 		header("Location: ".$urlPath.'/front/loggedin.php?ucid='.$_SESSION['ucid']);
 	}else{
-		setcookie("sessionstarted", "yes");
 		$c = curl_init();
 		$url = $urlPath.'/middle/control.php';
 		if(isset($_POST['ucid'],$_POST['password'])){

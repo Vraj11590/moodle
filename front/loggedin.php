@@ -64,21 +64,21 @@
 	
 	function getClasses(selectedsemester)
 	{
-		    var urltocall =  urlpath + "/front/return.php";
-		    var data = {ucid_ajax:"<?php echo ($_GET['ucid']);?>" , semesterid_ajax:selectedsemester, flag_ajax:"getClasses", urlPath_ajax: urlpath};
-
-		              $.ajax({
-				url: urltocall,
-				data: data,
-				type: "post",
-				//dataType: "json",
-				async: false,
-				success: function(output)
-				 	{
-					       alert(output);
-					       console.log(output);
-					}
-				});
+		//    var urltocall =  urlpath + "/front/return.php";
+		//    var data = {ucid_ajax:"<?php echo ($_GET['ucid']);?>" , semesterid_ajax:selectedsemester, flag_ajax:"getClasses", urlPath_ajax: urlpath};
+		//
+		//              $.ajax({
+		//		url: urltocall,
+		//		data: data,
+		//		type: "post",
+		//		//dataType: "json",
+		//		async: false,
+		//		success: function(output)
+		//		 	{
+		//			       alert(output);
+		//			       console.log(output);
+		//			}
+		//		});
 	}
 </script>
 </body>  
