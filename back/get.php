@@ -29,9 +29,5 @@
 		if($f == 'getSemesters'){
 			echo json_encode(getSemesters($u));
 		}
-		if($f == 'getClasses'){
-			echo json_encode("test");
-			
-		}
 	}else echo "function not set";
 ?>

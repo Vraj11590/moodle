@@ -64,7 +64,7 @@
 	
 	function getClasses(selectedsemester)
 	{
-		    var urltocall =  urlpath + "/middle/return.php";
+		    var urltocall =  urlpath + "/front/return.php";
 		    var data = {ucid_ajax:"<?php echo ($_GET['ucid']);?>" , semesterid_ajax:selectedsemester, flag_ajax:"getClasses", urlPath_ajax: urlpath};
 
 		              $.ajax({
@@ -80,7 +80,6 @@
 					}
 				});
 	}
-
 </script>
 </body>  
 
