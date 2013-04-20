@@ -3,13 +3,15 @@
 	session_start();
 	if(isset($_GET['logout'])){
 		$_SESSION = array();
-        session_destroy();
+		session_destroy();
 		header("Location: ".$urlPath.'/front/login.php?loggedout');
+
 		
 	}else
 	if(isset($_SESSION['ucid'])){
 		header("Location: ".$urlPath.'/front/loggedin.php?ucid='.$_SESSION['ucid']);
 	}else{
+		setcookie("sessionstarted", "yes");
 		$c = curl_init();
 		$url = $urlPath.'/middle/control.php';
 		if(isset($_POST['ucid'],$_POST['password'])){
@@ -27,7 +29,6 @@
 		if($result){
 			$result = json_decode($result,true);
 			if($result['auth']==true){
-				
 				$_SESSION['ucid'] = $_POST["ucid"];
 			}
 			

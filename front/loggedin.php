@@ -1,13 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<?php 
+<?php
+
+
 	include('../resources/header.php');
 	include('return.php');
-	$arr = array('ucid' => $_GET['ucid']);
 	
-	echo '<br><a a href = '.$urlPath.'/front/index.php?logout> Logout </a><br>';
-	echo'<a a href = '.$urlPath.'> Check Session </a>';
 
+	
+	$arr = array('ucid' => $_GET['ucid']);
+	//echo '<br><a a href = '.$urlPath.'/front/index.php?logout> Logout </a><br>';
+	//echo'<a a href = '.$urlPath.'> Check Session </a>';
+
+	
 ?>
 <html>
     
@@ -22,20 +27,26 @@
 
 <body>
     <div id="container">
-	<div id="userpanel">
-	    <label>Hello, <?php //echo($_GET['name']); ?> </label>
-	</div>
-	
-	<div id="semesters">
-	    <select id="sel_semester"></select>
-	    
-	</div>
+	<div id="header">
+		<div id="userpanel">
+			<label>Hello, <?php echo($_GET['name']); ?>
+			<?php echo '<a href = '.$urlPath.'/front/index.php?logout> Logout </a>'; ?>
+			</label>
+		  <div id="semesters">
+		
+			<select id="sel_semester"></select>
+		
+		 </div>
+		</div>
+		
+
+	</div> 
     </div>
 
     
     <script>
 	var semester =  <?php echo ( getJSON('getSemesters',$arr,$urlPath) ); ?> ;
-
+	var urlpath = "<?php echo $urlPath; ?>";
 	var len = semester.semesters.length;
 	//alert(len);
 	
@@ -45,9 +56,30 @@
 	}
 	
 	$("#sel_semester").change(function(){
-		    alert($("#sel_semester").val());
+		    var selectedsemester = $("#sel_semester").val();
+		    getClasses(selectedsemester);
+
+		    
 	});
 	
+	function getClasses(selectedsemester)
+	{
+		    var urltocall =  urlpath + "/middle/return.php";
+		    var data = {ucid_ajax:"<?php echo ($_GET['ucid']);?>" , semesterid_ajax:selectedsemester, flag_ajax:"getClasses", urlPath_ajax: urlpath};
+
+		              $.ajax({
+				url: urltocall,
+				data: data,
+				type: "post",
+				//dataType: "json",
+				async: false,
+				success: function(output)
+				 	{
+					       alert(output);
+					       console.log(output);
+					}
+				});
+	}
 
 </script>
 </body>  
