@@ -57,8 +57,14 @@
 		  $r = curl_exec($c);
 		  curl_close($c);
 		  // check for success or failure
-		  if (empty($r)) {echo "error";}
-		  else 		 {echo $r;}
+		  if(curl_errno($c))
+		  {
+			echo 'Curl error: ' . curl_error($c);
+		  }
+		  if (empty($r))
+		  {echo "error" . curl_error($c);}
+		  else
+		  {echo $r;}
 	}
 	
 	
