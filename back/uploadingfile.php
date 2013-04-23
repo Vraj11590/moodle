@@ -24,7 +24,7 @@ echo '<p>Database selected</p>';
  
 
  //This is our size condition 
-  	if ($uploaded_size > 350000) { 
+		if ($uploaded_size > 350000) { 
 			echo "Your file is too large.<br>"; 
 			$ok=0; 
 		} 
