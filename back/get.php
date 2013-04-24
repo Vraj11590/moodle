@@ -38,7 +38,7 @@
 			AND 	s.courseid = c.courseid
 			AND 	s.teacherid = u.ucid";
 		
-		return array('classes' => getElements($q);
+		return array('classes' => getElements($q));
 	}
 
 ///function to get posts in each class
@@ -49,29 +49,29 @@
 			FROM posts
 			WHERE crn='".$crn."'";
 
-	return array('posts' => getElements($q);
+	return array('posts' => getElements($q));
 	}
 	
 
 
 	if(isset($_GET['f'])){// check if function field is set
 		$f = $_GET['f'];
+		//$u = 'gt35';
 		$u = $_POST['ucid'];
 		$s = $_POST['semesterid'];
 		$c = $_POST['crn'];
-
+		
 		if($f == 'getSemesters'){
 			echo json_encode(getSemesters($u));
 		}
-<<<<<<< HEAD
-=======
 		if($f == 'getClasses'){
-			echo json_encode(getClasses($u,$s);
+			echo json_encode(getClasses($u,$s));
 			
 		}
 		if($f == 'getPosts'){
-			echo json_encode(getPosts($c);
+			
+			echo json_encode(getPosts($c));
+			
 		}
->>>>>>> fceb978a4ad8c7110c429caf72e8e32a8f1eea3f
 	}else echo "function not set";
 ?>

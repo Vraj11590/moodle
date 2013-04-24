@@ -10,7 +10,6 @@
 		curl_setopt($c, CURLOPT_HTTPHEADER, array('Content-Type' => 'application/xml'));
 		curl_setopt($c, CURLOPT_URL, $url);
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-
 		curl_setopt($c, CURLOPT_POST, true);
 		curl_setopt($c, CURLOPT_POSTFIELDS,$postdata);
 
