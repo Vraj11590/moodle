@@ -53,7 +53,7 @@
 	}
 	
 	function getQuiz($crn,$ucid){
-		$q=	"	SELECT 	q.quiz_quest AS question, q.a AS a, q.b AS b, q.c AS c, q.d AS d
+		$q=	"	SELECT 	q.quiz_quest AS question, q.a AS a, q.b AS b, q.c AS c, q.d AS d, q.qid as qid
 				FROM 	quiz AS q, quizAns AS qa
 				WHERE qa.ucid =  '".$ucid."'
 				AND qa.crn =  '".$crn."'
@@ -62,13 +62,13 @@
 		return array('quiz' => getElements($q));
 	}
 	
-		function getQuizScore($crn,$ucid){
+		function getQuizScore($crn,$ucid,$qid,$ans){
 		$q=	"	SELECT SUM( q.grade ) as score
 				FROM quiz AS q, quizAns AS qa
 				WHERE qa.ucid =  '".$ucid."'
 				AND qa.crn =  '".$crn."'
-				AND q.qid = qa.qid
-				AND q.quiz_ans = qa.student_ans";
+				AND q.qid = '".$qid."'
+				AND q.quiz_ans = '".$ans."'";
 		
 		return array('score' => getElements($q));
 	}
@@ -104,8 +104,10 @@
 		}
 		if($f == 'getQuizScore'){
 			$c = $_POST['crn'];
+			$qid=$_POST['qid'];
+			$ans=$_Post['ans'];
 			
-			echo json_encode(getQuizScore($c));
+			echo json_encode(getQuizScore($c,$u,$qid,$ans));
 			
 		}
 	}else echo "function not set";
