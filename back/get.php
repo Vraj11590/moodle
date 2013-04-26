@@ -8,7 +8,7 @@
 		$result = $con->query($q);
 		while($row = $result->fetch_row()){
 			
-			array_push($a,$row[0]);
+			array_push($a,$row);
 		}
 		return $a;
 	}
@@ -58,6 +58,7 @@
 		$f = $_GET['f'];
 		//$u = 'gt35';
 		$u = $_POST['ucid'];
+		$s = $_POST['semesterid'];
 		
 		if($f == 'getSemesters'){
 			echo json_encode(getSemesters($u));

@@ -12,8 +12,6 @@
 		*/
         
         $global = array();
-        
-        
         if(isset($_POST['flag_ajax']))
         {
             $flag = $_POST['flag_ajax'];

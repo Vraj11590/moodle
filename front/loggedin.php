@@ -35,12 +35,16 @@
 		  <div id="semesters">
 		
 			<select id="sel_semester"></select>
+			
+
 		
 		 </div>
 		</div>
 		
 
 	</div> 
+				<div id = "courses"></div>
+			<div id = "posts"></div>
     </div>
 
     
@@ -62,23 +66,58 @@
 		    
 	});
 	
-	function getClasses(selectedsemester)
+	function getPosts(selectedcrn)
 	{
-		   var urltocall =  urlpath + "/front/return.php";
-		   var data = {ucid_ajax:"<?php echo ($_GET['ucid']);?>" , semesterid_ajax:selectedsemester, flag_ajax:"getClasses", urlPath_ajax: urlpath};
+		 var urltocall =  urlpath + "/back/get.php?f=getPosts";
+		   var data = {crn:selectedcrn};
 		
 		             $.ajax({
-				url: urltocall,
-				data: data,
-				type: "post",
-				//dataType: "json",
-				async: false,
-				success: function(output)
-				 	{
-					       alert(output);
-					       console.log(output);
-					}
-				});
+								url: urltocall,
+								data: data,
+								type: "post",
+								dataType: "json",
+								async: false,
+								success: function(output)
+									{
+										$("#posts").html('');
+										for(var i = 0; i<output.posts.length; i++)
+										{
+											for(var j = 0; j < 3; j++)
+											{
+												$("#posts").append(output.posts[i][j] + '<br>');
+											}
+										}
+									
+									}
+							});
+	
+	
+	
+	}
+	
+	function getClasses(selectedsemester)
+	{
+		   var urltocall =  urlpath + "/back/get.php?f=getClasses";
+		   var data = {ucid:"<?php echo ($_GET['ucid']);?>" , semesterid:selectedsemester, flag_ajax:"getClasses", urlPath_ajax: urlpath};
+		
+		             $.ajax({
+								url: urltocall,
+								data: data,
+								type: "post",
+								dataType: "json",
+								async: false,
+								success: function(output)
+									{
+									//console.log(output);
+									//console.log(output.classes[0][0]);
+									$("#courses").html('');
+										for(var i =0; i<output.classes.length;i++)
+										{
+											$("#courses").append($('<button>' + output.classes[i][0] + '</button>').attr( "onClick", 'getPosts("'  + output.classes[i][2] + '");'  ));
+											$("#courses").append('<br>');
+										}
+									}
+							});
 	}
 </script>
 </body>  
