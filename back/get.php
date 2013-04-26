@@ -52,6 +52,28 @@
 		return array('posts' => getElements($q));
 	}
 	
+	function getQuiz($crn,$ucid){
+		$q=	"	SELECT 	q.quiz_quest AS question, q.a AS a, q.b AS b, q.c AS c, q.d AS d
+				FROM 	quiz AS q, quizAns AS qa
+				WHERE qa.ucid =  '".$ucid."'
+				AND qa.crn =  '".$crn."'
+				AND q.qid = qa.qid";
+		
+		return array('quiz' => getElements($q));
+	}
+	
+		function getQuizScore($crn,$ucid){
+		$q=	"	SELECT SUM( q.grade ) as score
+				FROM quiz AS q, quizAns AS qa
+				WHERE qa.ucid =  '".$ucid."'
+				AND qa.crn =  '".$crn."'
+				AND q.qid = qa.qid
+				AND q.quiz_ans = qa.student_ans";
+		
+		return array('score' => getElements($q));
+	}
+	
+
 	
 	
 	if(isset($_GET['f'])){// check if function field is set
@@ -72,6 +94,18 @@
 			$c = $_POST['crn'];
 			
 			echo json_encode(getPosts($c));
+			
+		}
+		if($f == 'getQuiz'){
+			$c = $_POST['crn'];
+			
+			echo json_encode(getQuiz($u,$c));
+			
+		}
+		if($f == 'getQuizScore'){
+			$c = $_POST['crn'];
+			
+			echo json_encode(getQuizScore($c));
 			
 		}
 	}else echo "function not set";
