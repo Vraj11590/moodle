@@ -6,8 +6,6 @@
 	include('../resources/header.php');
 	include('return.php');
 	
-
-	
 	$arr = array('ucid' => $_GET['ucid']);
 	//echo '<br><a a href = '.$urlPath.'/front/index.php?logout> Logout </a><br>';
 	//echo'<a a href = '.$urlPath.'> Check Session </a>';
@@ -45,6 +43,7 @@
 	</div> 
 				<div id = "courses"></div>
 			<div id = "posts"></div>
+			<div id = "quiz"></div>
     </div>
 
     
@@ -79,6 +78,7 @@
 								async: false,
 								success: function(output)
 									{
+										getQuiz(selectedcrn);
 										$("#posts").html('');
 										for(var i = 0; i<output.posts.length; i++)
 										{
@@ -92,6 +92,25 @@
 							});
 	
 	
+	
+	}
+	function getQuiz(selectedcrn)
+	{
+	var urltocall =  urlpath + "/back/get.php?f=getQuiz";
+		   var data = {crn:selectedcrn};
+		
+		             $.ajax({
+								url: urltocall,
+								data: data,
+								type: "post",
+								dataType: "json",
+								async: false,
+								success: function(output)
+									{
+										console.log(output);
+									
+									}
+							});
 	
 	}
 	
