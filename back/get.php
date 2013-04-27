@@ -24,16 +24,6 @@
 		return array('semesters' => getElements($q));
 		
 	}
-	
-	function createLinks($crn,$ucid){
-	
-		
-	
-	
-	
-	}
-	
-	
 	/// function to get classes in semester
 	function getClasses($ucid,$semesterid){
 		$q=	"SELECT c.courseid AS courseid, c.coursename AS coursename,
