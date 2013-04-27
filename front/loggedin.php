@@ -41,13 +41,62 @@
 		
 
 	</div> 
-				<div id = "courses"></div>
-			<div id = "posts"></div>
-			<div id = "quiz"></div>
+			<div id = "courses"></div>
+			<div id = "links"></div>
+
+	<div id = "content">
+
+			<div id = "addNewTopic">
+						<table width="400" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+						<tr>
+						<form id="form1" name="form1" method="post" action="add_topic.php">
+						<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
+						<tr>
+						<td colspan="3" bgcolor="#E6E6E6"><strong>Create New Topic</strong> </td>
+						</tr>
+						<tr>
+						<td width="14%"><strong>Topic</strong></td>
+						<td width="2%">:</td>
+						<td width="84%"><input name="topic" type="text" id="topic" size="50" /></td>
+						</tr>
+						<tr>
+						<td valign="top"><strong>Detail</strong></td>
+						<td valign="top">:</td>
+						<td><textarea name="detail" cols="50" rows="3" id="detail"></textarea></td>
+						</tr>
+						<tr>
+						<td><strong>Name</strong></td>
+						<td>:</td>
+						<td><input name="name" type="text" id="name" size="50" /></td>
+						</tr>
+						<tr>
+						<td><strong>Email</strong></td>
+						<td>:</td>
+						<td><input name="email" type="text" id="email" size="50" /></td>
+						</tr>
+						<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td><input type="submit" name="Submit" value="Submit" /> <input type="reset" name="Submit2" value="Reset" /></td>
+						</tr>
+						</table>
+						</td>
+						</form>
+						</tr>
+						</table>
+
+
+
+			</div>
+			
     </div>
 
     
     <script>
+	$("#addNewTopic").hide();
+
+	
 	var semester =  <?php echo ( getJSON('getSemesters',$arr,$urlPath) ); ?> ;
 	var urlpath = "<?php echo $urlPath; ?>";
 	var len = semester.semesters.length;
@@ -65,54 +114,60 @@
 		    
 	});
 	
-	function getPosts(selectedcrn)
+	function createLinks(selectedcrn)
 	{
-		 var urltocall =  urlpath + "/back/get.php?f=getPosts";
-		   var data = {crn:selectedcrn};
+
+		$("#links").html('');
+		$("#links").append('<a href="#" onclick="loadForum('+selectedcrn+');"> Class Forum </a> <br>' );
+		$("#links").append('<a href="#" onclick=""> Class Assignments </a>');
 		
-		             $.ajax({
-								url: urltocall,
-								data: data,
-								type: "post",
-								dataType: "json",
-								async: false,
-								success: function(output)
-									{
-										getQuiz(selectedcrn);
-										$("#posts").html('');
-										for(var i = 0; i<output.posts.length; i++)
-										{
-											for(var j = 0; j < 3; j++)
-											{
-												$("#posts").append(output.posts[i][j] + '<br>');
-											}
-										}
-									
-									}
-							});
-	
 	
 	
 	}
+
+	function loadForum(selectedcrn)
+	{
+		$("#content").append('<button id="addTopic">' + "Add Topic" +'</button>')
+		$("#addTopic").click(function(){
+			$("#addNewTopic").show();
+		});
+	}
+
 	function getQuiz(selectedcrn)
 	{
-	var urltocall =  urlpath + "/back/get.php?f=getQuiz";
-		   var data = {crn:selectedcrn};
-		
-		             $.ajax({
-								url: urltocall,
-								data: data,
-								type: "post",
-								dataType: "json",
-								async: false,
-								success: function(output)
-									{
+		var urltocall =  urlpath + "/back/get.php?f=getQuiz";
+			   var data = {crn:selectedcrn, ucid: "<?php echo ($_GET['ucid']); ?>"};
+			
+						 $.ajax({
+									url: urltocall,
+									data: data,
+									type: "post",
+									dataType: "json",
+									async: false,
+									success: function(output)
+										{
 										console.log(output);
-									
-									}
-							});
+											$("#quiz").html('');
+											for(var i = 0; i<output.quiz.length; i++)
+											{
+												//$("#quiz").append(output.quiz[i][0] + '<br>' );
+													for (var j = 1; j < 5 ; j++)
+													{
+														//$("#quiz").append('<input type="button" id='+ i +' onclick="selectedAnswer('+output.quiz[i][5] + ');" value="'+ output.quiz[i][j]+'">' );
+														//$("#quiz").append($('<button>' + output.quiz[i][j] + '</button>').attr( "onClick", 'checkAnswer("'  + output.quiz[i][5] + '");'));
+														//$("#quiz").append('<br>');
+													}
+											}
+										}
+								});
 	
 	}
+	function selectedAnswer(qid)
+	{
+		
+		
+	}
+	
 	
 	function getClasses(selectedsemester)
 	{
@@ -132,7 +187,7 @@
 									$("#courses").html('');
 										for(var i =0; i<output.classes.length;i++)
 										{
-											$("#courses").append($('<button>' + output.classes[i][0] + '</button>').attr( "onClick", 'getPosts("'  + output.classes[i][2] + '");'  ));
+											$("#courses").append($('<button>' + output.classes[i][0] + '</button>').attr( "onClick", 'createLinks("'  + output.classes[i][2] + '");'  ));
 											$("#courses").append('<br>');
 										}
 									}
