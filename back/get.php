@@ -27,7 +27,7 @@
 	/// function to get classes in semester
 	function getClasses($ucid,$semesterid){
 		$q=	"SELECT c.courseid AS courseid, c.coursename AS coursename,
-		s.crn AS crn, s.sectionid AS sectionid,
+		s.crn AS crn, s.sectionid AS sectionid,s.capacity as capacity, s.actual as actual, s.start as start, s.end as end,
 		u.name AS teachername
 		
 		FROM 	sections AS s, enrolled AS e, courses AS c, users AS u
@@ -49,6 +49,17 @@
 		WHERE crn='".$crn."'";
 		
 		return array('posts' => getElements($q));
+	}
+	function getAnno($crn){
+		$q=	"SELECT u.name as teachername, p.post_title as title, p.post_text as announcement
+		
+			FROM 	posts as p, users as u
+			WHERE 	crn='".$crn."'
+			AND		p.ucid = u.ucid
+			AND		type='t'"
+		;
+		
+		return array('anno' => getElements($q));
 	}
 	
 	function getQuiz($crn,$ucid){
@@ -89,6 +100,13 @@
 			$c = $_POST['crn'];
 			
 			echo json_encode(getPosts($c));
+			
+		}
+		if($f == 'getAnno'){
+			$c = $_POST['crn'];
+			//$u = $_POST['ucid'];	
+			echo json_encode($c);
+			//echo json_encode(getAnno($c));
 			
 		}
 		if($f == 'getQuiz'){
