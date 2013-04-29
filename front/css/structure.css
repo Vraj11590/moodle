@@ -14,13 +14,15 @@ body { font-size: 12px; background: #e8f0f7; line-height: 20px; word-spacing: 0.
         #userpanel{padding: 2px; background-color: #eee9d5; }
           
 	
-	#nav{margin-top:10px; width:150px; float:left; margin-left:30px;}	
+	#nav{float:left; margin-top:10px; width:150px; margin-left:60px;}	
 		#semesters{padding: 5px; background-color: #eee9d5;}	
 		#courses{padding:2px; background-color:#eee9d5; text-align:center;}
 		#links{padding:2px; background-color:#eee9d5; text-align:center;}
 		#upcoming{padding:2px; background-color:#eee9d5; text-align:center;}
+		#participants{padding:2px; background-color:#eee9d5; text-align:center;}
 		
-	#content{ float:right;margin: 0 auto; margin-top:10px; padding:2px; background-color:#eee9d5; width:1000px; margin-right:30px; height:500px; }
+		
+	#content{float:right; margin: 0 auto; margin-top:10px; padding:2px; background-color:#eee9d5; width:800px; margin-right:100px; height:500px; }
 		#title{background-color:white; width:350px;}
 		
 

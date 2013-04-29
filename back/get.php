@@ -105,8 +105,8 @@
 		if($f == 'getAnno'){
 			$c = $_POST['crn'];
 			//$u = $_POST['ucid'];	
-			echo json_encode($c);
-			//echo json_encode(getAnno($c));
+			//echo json_encode($c);
+			echo json_encode(getAnno($c));
 			
 		}
 		if($f == 'getQuiz'){
