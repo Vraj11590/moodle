@@ -1,4 +1,4 @@
-<?php ?>
+	<?php include('../resources/header.php'); ?>
 
 <html>  
 <head>  
@@ -99,12 +99,12 @@ textarea {
 
 
 </style>
-
+ <script src="../js/jquery.js"></script>
 <body>  
 <h1><?php echo($_GET['cname']); ?></h1>  
     <div id="wrapper">  
     <div id="menu">  
-        <a id="topic" href="forum/create_post.php">Create a topic</a> -  
+        <a id="topic" href="">Create a topic</a> 
         <a class="cat" href="forum/create_cat.php">Create a category</a>  
           
     </div>  
@@ -123,11 +123,60 @@ textarea {
 	$('#topic').on('click', function(e){
 				//alert("link clicked");
 				e.preventDefault();
-				var page_url=$(this).prop('href');
-				page_url = page_url;
-				alert(page_url);
-				$('#forumcontent').load(page_url);
-		});
+				$('#forumcontent').append('<form id = "createpost">' +
+											'<input id = "ptitle"type = "text" placeholder="title_"> </input>' +
+					'<br>' +
+				'<textarea id="pdata"> </textarea>' +
+				'<input type="submit"/></form>');
+				
+			$('#createpost').submit(function(e){
+	
+		alert("called");
+		e.preventDefault();
+		var title = $('#ptitle').val();
+		var crn = <?php echo ($_GET['selectedcrn']); ?>;
+		var ucid = "<?php echo ($_GET['ucid']); ?>";
+		var details = $('#pdata').val();
+		
+		console.log(title + details + crn + ucid);
+		
+		
+		var urltocall =  "http://web.njit.edu/~vp78/moodle" + "/back/get.php?f=AddTopic";
+		console.log(urltocall);
+		var data = {crn:crn, ucid:ucid, topic: title, detail:details};
+			
+						 $.ajax({
+									url: urltocall,
+									data: data,
+									type: "post",
+									dataType: "json",
+									async: false,
+									success: function(output)
+										{
+											console.log(output);
+											//for(var i = 0; i<output.cinfo.length; i++)
+											//{
+											//		for (var j = 0; j <= 5 ; j++)
+											//		{
+											///			$("#grades").append(output.cinfo[i][j]  + '<br/>');
+											//		}
+											//}
+											
+										}
+								});
+								
+		
+	
+	});	
+		
+	
+
+
+
+	});
+	
+
+	
 
 
 

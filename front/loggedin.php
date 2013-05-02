@@ -18,7 +18,7 @@
     <title> Moodle++ </title>
 
     <link href="css/structure.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery.js"></script>
+    <script src="js/jquery.js"></script>   
     <!--<script src="js/main.js" type="text/javascript"> </script>-->
 
 </head>    
@@ -87,7 +87,7 @@
 	var selectedcrn;
 	var urlpath = "<?php echo $urlPath; ?>";
 	var ucid = "<?php echo ( $_GET['ucid'] ); ?>";
-
+	console.log (urlpath);
 	$("#title").hide();
 	$('#cinfo').on('click', function(e){
 			//alert("link clicked");
@@ -134,7 +134,7 @@
 				e.preventDefault();
 				var page_url=$(this).prop('href');
 				page_url = page_url + '?crn=' +selectedcrn+'&ucid='+ ucid + '&cname=Coursename';
-				alert(page_url);
+				//alert(page_url);
 				$('#content').load(page_url);
 			}
 		});
@@ -179,7 +179,7 @@
 		selectedclass = classarray.classes[h][0];
 
 					page_url = urlpath + '/front/classhome.php?crn='+selectedcrn+'&class=' +selectedclass;
-					alert(page_url);
+					//alert(page_url);
 					$('#content').load(page_url);
 
 	//	$("#title").show();
