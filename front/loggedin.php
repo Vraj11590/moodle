@@ -124,6 +124,7 @@
 
 	$('#forum').on('click', function(e){
 			//alert("link clicked");
+			e.preventDefault();
 			if(!selectedcrn)
 			{
 				alert("You must select a class");
@@ -131,11 +132,38 @@
 			}
 			else
 			{
+				//console.log('http://web.njit.edu/~vp78/moodle/front/forum/forum.php?selectedcrn=' + selectedcrn + '&ucid=' + ucid);
 				e.preventDefault();
-				var page_url=$(this).prop('href');
-				page_url = page_url + '?crn=' +selectedcrn+'&ucid='+ ucid + '&cname=Coursename';
-				//alert(page_url);
-				$('#content').load(page_url);
+				//var page_url=$(this).prop('href');
+				//page_url = page_url + '?selectedcrn=' +selectedcrn+'&ucid='+ ucid + '&cname=Coursename';
+				////alert(page_url);
+				//$('#content').load(page_url);
+				
+				
+				
+				          var urltocall =  "http://web.njit.edu/~vp78/moodle" + "/back/get.php?f=getPosts";
+				 console.log(urltocall);
+                            var data = {crn:selectedcrn};
+                             $.ajax({
+                                        url: urltocall,
+                                       data: data,
+                                       type: "post",
+                                       dataType: "json",
+                                       async: false,
+                                       success: function(output)
+                                               {
+                                                       //console.log(output);
+						       $('#content').html('');
+                                                       for(var i = 0; i<output.posts.length; i++)
+                                                       {
+                                                                        $("#content").append('Posted By: '+ output.posts[i][0]  + '<br/>');
+                                                           		$("#content").append('Topic: '+output.posts[i][1]  + '<br/>');
+                                                        		$("#content").append('Detail: '+output.posts[i][2]  + '<br/><hr>');
+
+
+                                                       }
+                                               }
+                                    });
 			}
 		});
 	$('#assignment').on('click', function(e){
@@ -155,6 +183,9 @@
 			}
 		});
 
+		
+
+	
 
 
 	var semester =  <?php echo ( getJSON('getSemesters',$arr,$urlPath) ); ?> ;
@@ -178,7 +209,7 @@
 		selectedcrn = classarray.classes[h][2];
 		selectedclass = classarray.classes[h][0];
 
-					page_url = urlpath + '/front/classhome.php?crn='+selectedcrn+'&class=' +selectedclass;
+					page_url = urlpath + '/front/classhome.php?crn='+selectedcrn+'&ucid=' +ucid;
 					//alert(page_url);
 					$('#content').load(page_url);
 

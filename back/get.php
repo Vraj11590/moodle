@@ -59,10 +59,14 @@
  ///function to get posts in each class
  
  function getPosts($crn){
-  $q= "SELECT ucid,post_title,post_text
+  $q= "SELECT q.ucid as ucid, q.topic as topic, q.detail as question
+       FROM 	forumQuest as q
+       WHERE 	q.crn='".$crn."'
+       ORDER by q.id desc
+      
+     ";
   
-  FROM posts
-  WHERE crn='".$crn."'";
+
   
   return array('posts' => getElements($q));
  }
