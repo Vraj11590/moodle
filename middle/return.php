@@ -20,9 +20,10 @@
 	
 
 	if(isset($_GET['function'])){//just an example of how this would work assume functions is getSemesters
+		$f = $_GET['function'];
 		$arr = array('ucid' => $_POST['ucid']);
 		$functionCall=true;
-		getJSON($_GET['function'],$arr,$urlPath);
+		getJSON($f,$arr,$urlPath);
 	}
 ?>
 

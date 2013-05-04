@@ -30,7 +30,7 @@
 			{	$auth = true;
 				$type = $result_row->type;
 				$name = $result_row->name;
-				$rd =  $urlPath.'/front/loggedin.php?name='.$name.'&ucid='.$ucid.'&type='.$type;
+				$rd =  $urlPath.'/front/loggedin.php?name='.$name.'&ucid='.$ucid;
 				echoURL($rd,$auth);
 				}else{
 				$rd =  $urlPath.'/front/login.php?invalidPWD';
