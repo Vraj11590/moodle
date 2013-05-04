@@ -37,7 +37,7 @@
 		$con = new mysqli(db_host, db_user, db_pass, db_name); 
 		$con->query($q);
 		}
-	function insertQuizQuestion($quizID,$question,$a,$b,$c,$d,$ans){
+	function createQuizQuestion($quizID,$question,$a,$b,$c,$d,$ans){
 		}
 	function getChildren($postID){
 

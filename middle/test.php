@@ -33,3 +33,19 @@ Test post insertion: new topics will have parent value set to 0 in table
 	<input type="text" name="parent" placeholder="Reply to..." />
 	<input type="submit" value="test" name="posttest" style="padding:5px;"/>
 </form><hr>
+Test Quiz creation: (registers quiz into quiz master table) NOT FUNCITONAL YET
+<form id="loginform" action="test.php?function=createQuiz" method="post">
+	<input type="text" name="name" placeholder="Enter quiz name..."/>
+	<input type="submit" value="test" name="qctest" style="padding:5px;"/>
+</form><hr>
+Test Quiz Question creation: NOT FUNCTIONAL YET
+<form id="loginform" action="test.php?function=createQQ" method="post">
+	<input type="text" name="quizID" placeholder="Enter QuizID to edit..."/>
+	<input type="text" name="question" placeholder="Enter question..." />
+	<input type="text" name="a" placeholder="Enter answer A..." />
+	<input type="text" name="b" placeholder="Enter answer B..." />
+	<input type="text" name="c" placeholder="Enter answer C..." />
+	<input type="text" name="d" placeholder="Enter answer D..." />
+	<input type="text" name="ans" placeholder="Enter correct answer..." />
+	<input type="submit" value="test" name="assntest" style="padding:5px;"/>
+</form><hr>
