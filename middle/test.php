@@ -1,5 +1,5 @@
 <h1>CONTROL TEST PAGE</h1><br>
-tests insert functions as prof. theo for cs490-001<br><hr>
+tests insert functions as prof. theo for CS490-001 CRN:4<br><hr>
 
 <?php
 	include('../resources/header.php');
