@@ -5,6 +5,6 @@
 	$functionCall = false;
 	$auth = false;
 	$data = $_POST;
-	include('insert.php');
+	include('triggers.php');
 	include('login_control.php');
 ?>		

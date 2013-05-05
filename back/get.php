@@ -12,22 +12,6 @@
   }
   return $a;
  }
- function insertData($q)
- {
-	$con = new mysqli(db_host, db_user, db_pass, db_name); 
-	$result = $con->query($q);
- 
-	if($q)
-	{
-		echo ("Success");
-	}
-	else
-	{
-		echo ("Failure");
-	}
- 
- 
- }
  
  function getSemesters($ucid){
   
