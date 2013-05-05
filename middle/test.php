@@ -6,7 +6,10 @@ tests insert functions as prof. theo for CS490-001 CRN:4<hr>
 	you can now get all replies using parent = id<br>
 	quizzes: quiz master table, used to keep track of multiple quizzes in a class<br>
 	Restructured tables:<br>
-	quiz: (quiz question table) added quizID column to identify what quiz question belongs to
+	quiz: (quiz question table) added quizID column to identify what quiz question belongs to<br>
+	file upload works (locally at least, might need to edit permissions on school server)<br>
+	need files table to keep track of what the file belongs to (ie teacher post, assignment post, whatever)<br>
+	also needs to keep track of file path on server for retrieval
 	<hr>
 	<?php
 		include('../resources/header.php');

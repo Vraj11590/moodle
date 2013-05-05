@@ -15,6 +15,7 @@
 			}else $parent = 0;
 			insertPost($ucid,$crn,$title,$content,$parent);
 		}
+		
 		if($f=='insertAssignment'){
 			if($type == 't'){
 				$name = $_POST['name'];
@@ -23,6 +24,7 @@
 				insertAssignment($name,$content,$deadline);
 			}else echo 'Access Denied: Not a Teacher';
 		}
+		
 		if($f=='createQuiz'){
 			if($type == 't'){
 				$name = $_POST['name'];
@@ -30,6 +32,7 @@
 				createQuiz($name,$crn);
 			}else echo 'Access Denied: Not a Teacher';
 		}
+		
 		if($f=='createQQ'){
 			$quizID = $_POST['quizID'];
 			$question = $_POST['question'];
@@ -41,6 +44,7 @@
 			$grade = $_POST['grade'];
 			createQuizQuestion($quizID,$question,$a,$b,$c,$d,$ans,$grade);
 		}
+		
 		if($f=='getQS'){
 			if($type == 't'){
 				$quizID = $_POST['quizID'];
@@ -48,10 +52,12 @@
 				print_r(getQuestionScores($quizID));
 			}else echo 'Access Denied: Not a Teacher';
 		}
+		
 		if($f == 'getChildren'){
 			$postID = $_POST['postID'];
 			print_r(getChildren($postID));
 		}
+		
 		if($f == 'upload'){
 			if ($_FILES["file"]["error"] > 0)
 			{
