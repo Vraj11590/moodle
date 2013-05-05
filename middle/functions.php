@@ -57,7 +57,7 @@
 		}
 		return $values;
 	}
-	function gradeQuiz($quizID,$sAns){//NOT FINISHED
+	function gradeQuiz($quizID,$sAns){//NOT FINISHED//returns int grade in form of total score
 		$sAns;//student answer string
 		$key;//string in answer key 
 		//TODO write query to get answer key string
@@ -75,6 +75,10 @@
 			$i++;
 		}
 	}
+	function insertGrade($crn,$type,$id){//inserts grade into table
+		$type;// either quiz assignment or total grade
+		//TODO
+		}
 	function getChildren($postID){//get children of whatever postID u want
 		$con = new mysqli(db_host, db_user, db_pass, db_name); 
 		$q = "SELECT * FROM forums WHERE parent='".$postID."'";
@@ -87,4 +91,7 @@
 		}
 		return $children;
 	}
+	function insertFileData($path,$type,$owner){//inserts metadata of file into table
+		//TODO
+		}
 ?>

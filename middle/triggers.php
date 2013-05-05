@@ -1,6 +1,6 @@
 <?php
 	
-	if(isset($_GET['f'])){//just an example of how this would work assume functions is getSemesters
+	if(isset($_GET['f'])){
 		$f = $_GET['f'];
 		
 		if($f=='insertPost'){
