@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2013 at 03:12 AM
+-- Generation Time: May 07, 2013 at 08:50 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `assigns`
+-- Table structure for table `assignments`
 --
 
-CREATE TABLE IF NOT EXISTS `assigns` (
+CREATE TABLE IF NOT EXISTS `assignments` (
   `assignid` int(50) NOT NULL AUTO_INCREMENT,
   `assign_name` varchar(500) NOT NULL,
   `assign_content` varchar(500) NOT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE IF NOT EXISTS `assigns` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
--- Dumping data for table `assigns`
+-- Dumping data for table `assignments`
 --
 
-INSERT INTO `assigns` (`assignid`, `assign_name`, `assign_content`, `assign_deadline`) VALUES
+INSERT INTO `assignments` (`assignid`, `assign_name`, `assign_content`, `assign_deadline`) VALUES
 (1, 'assignment1', 'Create a group for project', '2013-02-02'),
 (2, 'assignment2', 'Submit the topic for your project', '2013-03-04'),
 (3, 'assignment3', 'Provide the basic solutions for your project', '2013-03-27'),
@@ -399,108 +399,10 @@ CREATE TABLE IF NOT EXISTS `files` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `forumans`
+-- Table structure for table `forum`
 --
 
-CREATE TABLE IF NOT EXISTS `forumans` (
-  `question_id` int(4) NOT NULL DEFAULT '0',
-  `a_id` int(4) NOT NULL AUTO_INCREMENT,
-  `crn` int(3) NOT NULL,
-  `a_ucid` varchar(7) NOT NULL DEFAULT '',
-  `a_email` varchar(65) NOT NULL DEFAULT '',
-  `a_answer` longtext NOT NULL,
-  `a_datetime` date DEFAULT NULL,
-  PRIMARY KEY (`a_id`),
-  KEY `forumAnsFK_1` (`a_ucid`),
-  KEY `forumAnsFK_2` (`crn`),
-  KEY `forumAnsFK_` (`question_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
-
---
--- Dumping data for table `forumans`
---
-
-INSERT INTO `forumans` (`question_id`, `a_id`, `crn`, `a_ucid`, `a_email`, `a_answer`, `a_datetime`) VALUES
-(1, 1, 4, 'gt35', '', 'Maybe on May10', NULL),
-(1, 2, 4, 'vp78', '', 'i have never heard about it. do we have to do it?', NULL),
-(2, 3, 9, 'gt35', '', 'i was absent 2. lol', NULL),
-(2, 4, 9, 'thh4', '', 'no, he did not', NULL),
-(3, 5, 15, 'gt35', '', 'i will. Pick me up after class.', NULL),
-(3, 6, 15, 'thh4', '', 'can you give me a ride, too?', NULL),
-(4, 7, 19, 'vp78', '', 'sure. come to see me after class this week', NULL),
-(4, 8, 19, 'thh4', '', 'can i come, too?', NULL),
-(5, 9, 20, 'gt35', '', 'Maybe on July 10', NULL),
-(5, 10, 20, 'vp78', '', 'i have never heard about it. do we have to do it?', NULL),
-(6, 11, 27, 'gt35', '', 'i was absent 2. lol', NULL),
-(6, 12, 27, 'thh4', '', 'no, he did not', NULL),
-(7, 13, 29, 'gt35', '', 'Maybe on Nov 10', NULL),
-(7, 14, 29, 'vp78', '', 'i have never heard about it. do we have to do it?', NULL),
-(8, 15, 37, 'gt35', '', 'i was absent 2. lol', NULL),
-(8, 16, 37, 'thh4', '', 'no, he did not', NULL),
-(9, 17, 39, 'gt35', '', 'i will. Pick me up after class.', NULL),
-(9, 18, 39, 'thh4', '', 'can you give me a ride, too?', NULL),
-(10, 19, 41, 'vp78', '', 'sure. come to see me after class this week', NULL),
-(10, 20, 41, 'thh4', '', 'can i come, too?', NULL),
-(11, 21, 42, 'gt35', '', 'i was absent 2. lol', NULL),
-(11, 22, 42, 'thh4', '', 'no, he did not', NULL),
-(12, 23, 45, 'gt35', '', 'Maybe on May10', NULL),
-(12, 24, 45, 'vp78', '', 'i have never heard about it. do we have to do it?', NULL),
-(13, 25, 55, 'gt35', '', 'i was absent 2. lol', NULL),
-(13, 26, 55, 'thh4', '', 'no, he did not', NULL),
-(14, 27, 59, 'gt35', '', 'i will. Pick me up after class.', NULL),
-(14, 28, 59, 'thh4', '', 'can you give me a ride, too?', NULL),
-(15, 29, 43, 'vp78', '', 'sure. come to see me after class this week', NULL),
-(15, 30, 43, 'thh4', '', 'can i come, too?', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `forumquest`
---
-
-CREATE TABLE IF NOT EXISTS `forumquest` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
-  `crn` int(3) NOT NULL,
-  `topic` varchar(255) NOT NULL DEFAULT '',
-  `detail` longtext NOT NULL,
-  `ucid` varchar(7) NOT NULL DEFAULT '',
-  `email` varchar(65) NOT NULL DEFAULT '',
-  `datetime` varchar(25) NOT NULL DEFAULT '',
-  `view` int(4) NOT NULL DEFAULT '0',
-  `reply` int(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `forumQuestFK_1` (`ucid`),
-  KEY `forumQuestFK_2` (`crn`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
-
---
--- Dumping data for table `forumquest`
---
-
-INSERT INTO `forumquest` (`id`, `crn`, `topic`, `detail`, `ucid`, `email`, `datetime`, `view`, `reply`) VALUES
-(1, 4, 'When will we have midterm?', 'could anyone let me know when we will have midterm exam?', 'thh4', '', '', 0, 0),
-(2, 9, 'Class attendant!', 'did professor check attendant list in last class?', 'vp78', '', '', 0, 0),
-(3, 15, 'Mobile app meeting', 'meeting about how to make mobile app on May,15th. Anyone want to join with us?', 'vp78', '', '', 0, 0),
-(4, 19, 'Practice for final', 'could anyone please help me to practice more problem to get well prepared for upcoming final exam', 'gt35', '', '', 0, 0),
-(5, 20, 'When will we have midterm?', 'could anyone let me know when we will have midterm exam?', 'thh4', '', '', 0, 0),
-(6, 27, 'class attendant!', 'did professor check attendant list in last class?', 'vp78', '', '', 0, 0),
-(7, 29, 'When will we have midterm?', 'could anyone let me know when we will have midterm exam?', 'thh4', '', '', 0, 0),
-(8, 37, 'class attendant!', 'did professor check attendant list in last class?', 'vp78', '', '', 0, 0),
-(9, 39, 'mobile app meeting', 'meeting about how to make mobile app on Dec 15th. Anyone want to join with us?', 'vp78', '', '', 0, 0),
-(10, 41, 'practice for final', 'could anyone please help me to practice more problem to get well prepared for upcoming final exam', 'gt35', '', '', 0, 0),
-(11, 42, 'class attendant!', 'did professor check attendant list in last class?', 'vp78', '', '', 0, 0),
-(12, 45, 'When will we have midterm?', 'could anyone let me know when we will have midterm exam?', 'thh4', '', '', 0, 0),
-(13, 55, 'class attendant!', 'did professor check attendant list in last class?', 'vp78', '', '', 0, 0),
-(14, 59, 'mobile app meeting', 'meeting about how to make mobile app on May,15th. Anyone want to join with us?', 'vp78', '', '', 0, 0),
-(15, 43, 'practice for final', 'could anyone please help me to practice more problem to get well prepared for upcoming final exam', 'gt35', '', '', 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `forums`
---
-
-CREATE TABLE IF NOT EXISTS `forums` (
+CREATE TABLE IF NOT EXISTS `forum` (
   `ID` int(100) NOT NULL AUTO_INCREMENT,
   `crn` int(100) NOT NULL,
   `ucid` varchar(5) NOT NULL,
@@ -508,145 +410,18 @@ CREATE TABLE IF NOT EXISTS `forums` (
   `content` varchar(1000) NOT NULL,
   `parent` int(100) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `forums`
+-- Dumping data for table `forum`
 --
 
-INSERT INTO `forums` (`ID`, `crn`, `ucid`, `title`, `content`, `parent`) VALUES
-(4, 4, 'theo', 'hello', 'this is a test', 0),
-(5, 4, 'theo', 'replhy', 'im replying to', 4),
-(6, 4, 'theo', 'replhy', 'im replying to', 5),
-(7, 4, 'theo', 'replhy', 'im replying to', 6);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `posts`
---
-
-CREATE TABLE IF NOT EXISTS `posts` (
-  `pid` int(5) NOT NULL AUTO_INCREMENT,
-  `crn` int(3) NOT NULL,
-  `ucid` varchar(7) NOT NULL,
-  `post_title` varchar(500) DEFAULT NULL,
-  `post_text` varchar(500) NOT NULL,
-  PRIMARY KEY (`pid`),
-  KEY `postFK_1` (`ucid`),
-  KEY `postFK_2` (`crn`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
-
---
--- Dumping data for table `posts`
---
-
-INSERT INTO `posts` (`pid`, `crn`, `ucid`, `post_title`, `post_text`) VALUES
-(1, 4, 'thh4', 'When will we have midterm?', 'could anyone let me know when we will have midterm exam?'),
-(2, 4, 'gt35', 'reply:midterm exam', 'Maybe on May10'),
-(3, 4, 'vp78', 'reply:midterm ', 'i have never heard about it. do we have to do it?'),
-(4, 9, 'vp78', 'class attention!', 'did professor check attention list in last class?'),
-(5, 9, 'gt35', 'reply: class attention ', 'i was absent 2. lol'),
-(6, 9, 'thh4', 'reply: class attention ', 'no, he did not'),
-(7, 15, 'vp78', 'mobile app meeting', 'meeting about how to make mobile app on May,15th. Anyone want to join with us?'),
-(8, 15, 'gt35', 'reply: ', 'i will. Pick me up after class.'),
-(9, 15, 'thh4', 'reply:  ', 'can you give me a ride, too?'),
-(10, 19, 'gt35', 'practice for final', 'could anyone please help me to practice more problem to get well prepared for upcoming final exam'),
-(11, 19, 'vp78', 'reply: ', 'sure. come to see me after class this week'),
-(12, 19, 'thh4', 'reply:  ', 'can i come, too?'),
-(13, 20, 'thh4', 'When will we have midterm?', 'could anyone let me know when we will have midterm exam?'),
-(14, 20, 'gt35', 'reply:midterm exam', 'Maybe on July 10'),
-(15, 20, 'vp78', 'reply:midterm ', 'i have never heard about it. do we have to do it?'),
-(16, 27, 'vp78', 'class attention!', 'did professor check attention list in last class?'),
-(17, 27, 'gt35', 'reply: class attention ', 'i was absent 2. lol'),
-(18, 27, 'thh4', 'reply: class attention ', 'no, he did not'),
-(19, 29, 'thh4', 'When will we have midterm?', 'could anyone let me know when we will have midterm exam?'),
-(20, 29, 'gt35', 'reply:midterm exam', 'Maybe on Nov 10'),
-(21, 29, 'vp78', 'reply:midterm ', 'i have never heard about it. do we have to do it?'),
-(22, 37, 'vp78', 'class attention!', 'did professor check attention list in last class?'),
-(23, 37, 'gt35', 'reply: class attention ', 'i was absent 2. lol'),
-(24, 37, 'thh4', 'reply: class attention ', 'no, he did not'),
-(25, 39, 'vp78', 'mobile app meeting', 'meeting about how to make mobile app on Dec 15th. Anyone want to join with us?'),
-(26, 39, 'gt35', 'reply: ', 'i will. Pick me up after class.'),
-(27, 39, 'thh4', 'reply:  ', 'can you give me a ride, too?'),
-(28, 41, 'gt35', 'practice for final', 'could anyone please help me to practice more problem to get well prepared for upcoming final exam'),
-(29, 41, 'vp78', 'reply: ', 'sure. come to see me after class this week'),
-(30, 41, 'thh4', 'reply:  ', 'can i come, too?'),
-(31, 42, 'vp78', 'class attention!', 'did professor check attention list in last class?'),
-(32, 42, 'gt35', 'reply: class attention ', 'i was absent 2. lol'),
-(33, 42, 'thh4', 'reply: class attention ', 'no, he did not'),
-(34, 45, 'thh4', 'When will we have midterm?', 'could anyone let me know when we will have midterm exam?'),
-(35, 45, 'gt35', 'reply:midterm exam', 'Maybe on May10'),
-(36, 45, 'vp78', 'reply:midterm ', 'i have never heard about it. do we have to do it?'),
-(37, 55, 'vp78', 'class attention!', 'did professor check attention list in last class?'),
-(38, 55, 'gt35', 'reply: class attention ', 'i was absent 2. lol'),
-(39, 55, 'thh4', 'reply: class attention ', 'no, he did not'),
-(40, 59, 'vp78', 'mobile app meeting', 'meeting about how to make mobile app on May,15th. Anyone want to join with us?'),
-(41, 59, 'gt35', 'reply: ', 'i will. Pick me up after class.'),
-(42, 59, 'thh4', 'reply:  ', 'can you give me a ride, too?'),
-(43, 43, 'gt35', 'practice for final', 'could anyone please help me to practice more problem to get well prepared for upcoming final exam'),
-(44, 43, 'vp78', 'reply: ', 'sure. come to see me after class this week'),
-(45, 43, 'thh4', 'reply:  ', 'can i come, too?'),
-(46, 4, 'theo', 'announcement:  ', 'Wellcome to CS 490 class'),
-(47, 4, 'theo', 'Office Hours:  ', 'My office hours:  Tuesday, Thursday: 11:30-12:50pm PC MALL '),
-(48, 9, 'george', 'announcement:  ', 'Wellcome to CS 356 class'),
-(49, 9, 'george', '', 'If you need any furthur information, email me at george@njit.edu'),
-(50, 15, 'rachel', 'announcement:  ', 'Wellcome to HUM 102 class'),
-(51, 15, 'rachel', '', 'If you need any furthur information, email me at rachel@njit.edu'),
-(52, 19, 'will', 'Announcement:  ', 'Wellcome to PHYS 234 class'),
-(53, 19, 'will', 'Attention!', 'If you need any furthur information, email me at will@njit.edu'),
-(54, 20, 'rachel', 'announcement:  ', 'Wellcome to HUM 101 class'),
-(55, 20, 'rachel', '', 'If you need any furthur information, email me at rachel@njit.edu'),
-(56, 27, 'sohn', 'announcement:  ', 'Wellcome to CS 288 class'),
-(57, 27, 'sohn', 'Attention!', 'If you need any furthur information, email me at sohn@njit.edu'),
-(58, 29, 'marvin', 'announcement:  ', 'Wellcome to CS 341 class'),
-(59, 29, 'marvin', 'Attention!', 'If you need any furthur information, email me at marvin@njit.edu'),
-(60, 37, 'will', 'announcement:  ', 'Wellcome to PHYS 121 class'),
-(61, 37, 'will', '', 'If you need any furthur information, email me at will@njit.edu'),
-(62, 39, 'will', 'announcement:  ', 'Wellcome to PHYS 203 class'),
-(63, 39, 'will', '', 'If you need any furthur information, email me at will@njit.edu'),
-(64, 41, 'kapl', 'announcement:  ', 'Wellcome to CS 280 class'),
-(65, 41, 'kapl', '', 'If you need any furthur information, email me at kapl@njit.edu'),
-(66, 42, 'ganga', 'announcement:  ', 'Wellcome to MATH 222 class'),
-(67, 42, 'ganga', '', 'If you need any furthur information, email me at ganga@njit.edu'),
-(68, 43, 'cohen', 'announcement:  ', 'Wellcome to CS 100 class'),
-(69, 43, 'cohen', 'Attention!', 'If you need any furthur information, email me at cohen@njit.edu'),
-(70, 45, 'bell', 'announcement:  ', 'Wellcome to CS 107 class'),
-(71, 45, 'bell', 'Attention!', 'If you need any furthur information, email me at bell@njit.edu'),
-(72, 55, 'ganga', 'announcement:  ', 'Wellcome to MATH 112 class'),
-(73, 55, 'ganga', '', 'If you need any furthur information, email me at ganga@njit.edu'),
-(74, 59, 'will', 'announcement:  ', 'Wellcome to PHYS 111 class'),
-(75, 59, 'will', '', 'If you need any furthur information, email me at will@njit.edu');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `quiz`
---
-
-CREATE TABLE IF NOT EXISTS `quiz` (
-  `qid` int(5) NOT NULL AUTO_INCREMENT,
-  `quizID` int(11) NOT NULL,
-  `quiz_quest` varchar(500) NOT NULL,
-  `a` varchar(500) NOT NULL,
-  `b` varchar(500) NOT NULL,
-  `c` varchar(500) NOT NULL,
-  `d` varchar(500) NOT NULL,
-  `quiz_ans` varchar(500) NOT NULL,
-  `grade` int(3) DEFAULT '25',
-  PRIMARY KEY (`qid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `quiz`
---
-
-INSERT INTO `quiz` (`qid`, `quizID`, `quiz_quest`, `a`, `b`, `c`, `d`, `quiz_ans`, `grade`) VALUES
-(1, 1, 'Who is currently US President?', 'Barack Obama', 'Paris Hilton', 'Beyonce ', 'Lindsay Lohan', 'a', 25),
-(2, 1, 'Who will schedule Capstone ShowCase in NJIT ?', 'Principle', 'no one', 'Instructor', 'Professor', 'd', 25),
-(3, 1, 'What is NY ?', 'New Yankees', 'Not Yummy', 'US state', 'No Yelling', 'c', 25),
-(4, 1, 'What is CA ?', 'Cops Around', 'Camera Around', 'US state', 'Center of Austin', 'c', 25),
-(5, 1, 'what is love?', 'baby dont hurt me', 'dont hurt me ', 'no more', 'what is love', 'a', 25);
+INSERT INTO `forum` (`ID`, `crn`, `ucid`, `title`, `content`, `parent`) VALUES
+(4, 4, 'theo', 'hello', 'this is a the topic', 0),
+(5, 4, 'theo', 'replhy', 'this is a reply to topic', 4),
+(6, 4, 'theo', 'replhy', 'reply to reply', 5),
+(7, 4, 'theo', 'replhy', 'reply^3', 6),
+(8, 4, 'theo', 're:', 'replying to topic', 4);
 
 -- --------------------------------------------------------
 
@@ -663,7 +438,7 @@ CREATE TABLE IF NOT EXISTS `quizans` (
   KEY `quizAnsFK_1` (`ucid`),
   KEY `quizAnsFK_2` (`crn`),
   KEY `quizAnsFK_3` (`qid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Submitted Quiz Answers';
 
 --
 -- Dumping data for table `quizans`
@@ -675,24 +450,53 @@ INSERT INTO `quizans` (`qid`, `crn`, `ucid`, `student_ans`, `grade`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quizzes`
+-- Table structure for table `quizmaster`
 --
 
-CREATE TABLE IF NOT EXISTS `quizzes` (
+CREATE TABLE IF NOT EXISTS `quizmaster` (
   `ID` int(100) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `crn` int(100) NOT NULL,
-  `key` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `quizzes`
+-- Dumping data for table `quizmaster`
 --
 
-INSERT INTO `quizzes` (`ID`, `name`, `crn`, `key`) VALUES
-(1, 'quiz1', 4, ''),
-(2, 'quiz1', 4, '');
+INSERT INTO `quizmaster` (`ID`, `name`, `crn`) VALUES
+(1, 'quiz1', 4),
+(2, 'quiz2', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quizquestions`
+--
+
+CREATE TABLE IF NOT EXISTS `quizquestions` (
+  `qid` int(5) NOT NULL AUTO_INCREMENT,
+  `quizID` int(11) NOT NULL,
+  `quiz_quest` varchar(500) NOT NULL,
+  `a` varchar(500) NOT NULL,
+  `b` varchar(500) NOT NULL,
+  `c` varchar(500) NOT NULL,
+  `d` varchar(500) NOT NULL,
+  `quiz_ans` varchar(500) NOT NULL,
+  `grade` int(3) DEFAULT '25',
+  PRIMARY KEY (`qid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `quizquestions`
+--
+
+INSERT INTO `quizquestions` (`qid`, `quizID`, `quiz_quest`, `a`, `b`, `c`, `d`, `quiz_ans`, `grade`) VALUES
+(1, 1, 'Who is currently US President?', 'Barack Obama', 'Paris Hilton', 'Beyonce ', 'Lindsay Lohan', 'a', 25),
+(2, 1, 'Who will schedule Capstone ShowCase in NJIT ?', 'Principle', 'no one', 'Instructor', 'Professor', 'd', 25),
+(3, 1, 'What is NY ?', 'New Yankees', 'Not Yummy', 'US state', 'No Yelling', 'c', 25),
+(4, 1, 'What is CA ?', 'Cops Around', 'Camera Around', 'US state', 'Center of Austin', 'c', 25),
+(5, 1, 'what is love?', 'baby dont hurt me', 'dont hurt me ', 'no more', 'what is love', 'a', 25);
 
 -- --------------------------------------------------------
 

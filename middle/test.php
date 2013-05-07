@@ -21,6 +21,7 @@ tests insert functions as prof. theo for CS490-001 CRN:4<hr>
 		$_POST['ucid'] = 'theo';
 		$_POST['semesterid'] = 'spring2013';
 		$_POST['crn'] = '4';
+		$_POST['debug'] = true;
 		//$_POST['name'] = 'Theodore Nicholson';
 		$type = 't';
 		echo 'overriden $_POST array: ';
@@ -71,6 +72,11 @@ tests insert functions as prof. theo for CS490-001 CRN:4<hr>
 	</form><hr>
 	Test getChildren function: 
 	<form id="test6form" action="test.php?f=getChildren" method="post">
+		<input type="text" name="postID" placeholder="Enter postID to get children..."/>
+		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
+	</form><hr>
+	Test getPostInfo function: 
+	<form id="testform" action="test.php?f=getChildren" method="post">
 		<input type="text" name="postID" placeholder="Enter postID to get children..."/>
 		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
 	</form><hr>

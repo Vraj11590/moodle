@@ -1,13 +1,22 @@
 <?php
 	
 	if(isset($_GET['f'])){
+		
 		$f = $_GET['f'];
+		$type = $_POST['type'];
+		$debug = $_POST['debug'];
 		
 		if(isset($_POST['quizID'])){
 			$quizID = $_POST['quizID'];
 		}
 		if(isset($_POST['ucid'])){
 			$ucid = $_POST['ucid'];
+		}
+		if(isset($_POST['postID'])){
+			$postID = $_POST['postID'];
+		}
+		if(isset($_POST['postID'])){
+			$postID = $_POST['postID'];
 		}
 		
 		if($f=='insertPost'){
@@ -21,20 +30,16 @@
 		}
 		
 		if($f=='insertAssignment'){
-			if($type == 't'){
-				$name = $_POST['name'];
-				$content = $_POST['content'];
-				$deadline = $_POST['deadline'];
-				insertAssignment($name,$content,$deadline);
-			}else echo 'Access Denied: Not a Teacher';
+			$name = $_POST['name'];
+			$content = $_POST['content'];
+			$deadline = $_POST['deadline'];
+			insertAssignment($name,$content,$deadline);
 		}
 		
 		if($f=='createQuiz'){
-			if($type == 't'){
-				$name = $_POST['name'];
-				$crn = $_POST['crn'];
-				createQuiz($name,$crn);
-			}else echo 'Access Denied: Not a Teacher';
+			$name = $_POST['name'];
+			$crn = $_POST['crn'];
+			createQuiz($name,$crn);
 		}
 		
 		if($f=='createQQ'){
@@ -86,24 +91,36 @@
 			
 		}
 		if($f=='encPosts'){
-			$postID = $_POST['postID'];
 			echo encodePosts($postID);
 		}
-		if($f=='ansStr'){
-			echo getAnsStr($quizID);
-		}
+		
+
+	}
+	
+	
+	if($type == 't'){//teacher only functions go inside here
+		
+	}//else echo 'Access Denied: Not a Teacher';
+	
+	if($debug == true){
 		if($f=='gradeQuiz'){
 			$sucid = $_POST['sucid'];
 			echo gradeQuiz($quizID,$sucid);
+		}
+		if($f=='ansStr'){
+			echo getAnsStr($quizID);
 		}
 		if($f=='sAnsStr'){
 			$sucid = $_POST['sucid'];
 			echo getStudentAnsStr($quizID,$sucid);
 		}
+		if($f=='getPostInfo'){
+			print_r(getPostInfo($postID));
+		}
 	}
-	else{
-		$arr = array('ucid' => $_POST['ucid']);
-	}
+	// else{
+	// $arr = array('ucid' => $_POST['ucid']);
+	// }
 	
 ?>
 
