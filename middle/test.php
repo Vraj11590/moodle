@@ -23,7 +23,7 @@ tests insert functions as prof. theo for CS490-001 CRN:4<hr>
 		$_POST['crn'] = '4';
 		$_POST['debug'] = true;
 		//$_POST['name'] = 'Theodore Nicholson';
-		$type = 't';
+		$_POST['type'] = 't';
 		echo 'overriden $_POST array: ';
 		
 		print_r($_POST);

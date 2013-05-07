@@ -36,7 +36,7 @@
 		VALUES ('".$crn."','".$ucid."','".$title."','".$content."','".$parent."')";
 		runQuery($q);
 	}
-	function insertAssignment($name,$content,$deadline){// insert assignment into table
+	function insertAssignment($name,$content,$deadline,$crn){// insert assignment into table
 		$q ="INSERT INTO assignments(assign_name, assign_content, assign_deadline)
 		VALUES ('".$name."','".$content."','".$deadline."')";
 		runQuery($q);

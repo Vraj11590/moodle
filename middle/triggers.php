@@ -93,35 +93,29 @@
 		if($f=='encPosts'){
 			echo encodePosts($postID);
 		}
+		if($type == 't'){//teacher only functions go inside here
+			
+		}//else echo 'Access Denied: Not a Teacher';
 		
-
-	}
-	
-	
-	if($type == 't'){//teacher only functions go inside here
+		if($debug == true){
+			if($f=='gradeQuiz'){
+				$sucid = $_POST['sucid'];
+				echo gradeQuiz($quizID,$sucid);
+			}
+			if($f=='ansStr'){
+				echo getAnsStr($quizID);
+			}
+			if($f=='sAnsStr'){
+				$sucid = $_POST['sucid'];
+				echo getStudentAnsStr($quizID,$sucid);
+			}
+			if($f=='getPostInfo'){
+				print_r(getPostInfo($postID));
+			}
+		}
 		
-	}//else echo 'Access Denied: Not a Teacher';
-	
-	if($debug == true){
-		if($f=='gradeQuiz'){
-			$sucid = $_POST['sucid'];
-			echo gradeQuiz($quizID,$sucid);
-		}
-		if($f=='ansStr'){
-			echo getAnsStr($quizID);
-		}
-		if($f=='sAnsStr'){
-			$sucid = $_POST['sucid'];
-			echo getStudentAnsStr($quizID,$sucid);
-		}
-		if($f=='getPostInfo'){
-			print_r(getPostInfo($postID));
-		}
 	}
-	// else{
-	// $arr = array('ucid' => $_POST['ucid']);
-	// }
-	
+		
 ?>
 
 
