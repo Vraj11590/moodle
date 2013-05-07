@@ -110,3 +110,8 @@ Test gradeQuiz
 		<input type="text" name="sucid" placeholder="Enter UCID to grade submisison.."/>
 		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
 	</form><hr>
+	Test encodeAssignments function: 
+	<form id="test7form" action="test.php?f=encodeAssignments" method="post">
+		<input type="text" name="crn" placeholder="crn"/>
+		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
+	</form><hr>

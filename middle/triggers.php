@@ -15,12 +15,14 @@
 		if(isset($_POST['postID'])){
 			$postID = $_POST['postID'];
 		}
-		if(isset($_POST['postID'])){
-			$postID = $_POST['postID'];
+		if(isset($_POST['debug'])){
+			$postID = $_POST['debug'];
 		}
-		
-		if($f=='insertPost'){
+		if(isset($_POST['crn'])){
 			$crn = $_POST['crn'];
+		}
+		if($f=='getSemester')
+		if($f=='insertPost'){
 			$title = $_POST['title'];
 			$content = $_POST['content'];
 			if(isset($_POST['parent'])){
@@ -93,6 +95,10 @@
 		if($f=='encPosts'){
 			echo encodePosts($postID);
 		}
+		if ($f == 'encodeAssignments'){
+			echo encodeAssignments($crn);
+			
+			}
 		if($type == 't'){//teacher only functions go inside here
 			
 		}//else echo 'Access Denied: Not a Teacher';

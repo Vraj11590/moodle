@@ -36,10 +36,15 @@
 		VALUES ('".$crn."','".$ucid."','".$title."','".$content."','".$parent."')";
 		runQuery($q);
 	}
-	function insertAssignment($name,$content,$deadline,$crn){// insert assignment into table
+	function insertAssignment($name,$content,$deadline){// insert assignment into table
 		$q ="INSERT INTO assignments(assign_name, assign_content, assign_deadline)
 		VALUES ('".$name."','".$content."','".$deadline."')";
 		runQuery($q);
+	}
+	function getAssignments($crn){
+	$q = "SELECT * FROM assignments WHERE crn = '".$crn."'";
+	$result = runQuery($q);
+	return getElements($result);
 	}
 	function createQuiz($name,$crn){//insert entry into quiz master table then creates new table for quiz
 		$q = "INSERT INTO quizmaster (name,crn)
@@ -136,5 +141,8 @@
 	}
 	function encodePosts($postID){//encodes posts in json array
 		return json_encode(getPostInfo($postID));
+	}
+	function encodeAssignments($crn){//encodes posts in json array
+		return json_encode(getAssignments($crn));
 	}
 ?>			
