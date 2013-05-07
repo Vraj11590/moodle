@@ -57,23 +57,45 @@
 		}
 		return $values;
 	}
-	function gradeQuiz($quizID,$sAns){//NOT FINISHED//returns int grade in form of total score
-		$sAns;//student answer string
-		$key;//string in answer key 
-		//TODO write query to get answer key string
+	function getAnsStr($quizID){//returns answer string of quiz for use in grading
+		$q = "SELECT quiz_ans FROM quiz WHERE quizID = '".$quizID."'";
+		$con = new mysqli(db_host, db_user, db_pass, db_name);
+		$result = $con->query($q);
+		$ansStr='';
+		while ($row = mysqli_fetch_assoc($result)){
+			$ansStr.=$row['quiz_ans'];
+		}	return $ansStr;
+	}
+	function getStudentAnsStr($quizID,$ucid){
+		$q = "SELECT student_ans FROM quizans WHERE qid = '".$quizID."' AND ucid = '".$ucid."'";
+		$con = new mysqli(db_host, db_user, db_pass, db_name);
+		$result = $con->query($q);
+		$ans='wat';
+		if($result){
+		$row = mysqli_fetch_assoc($result);
+		$ans = $row['student_ans'];
+		}else $ans = 'no result';
+		return $ans;
+	}
+	function gradeQuiz($quizID,$ucid){//returns int grade in form of total score
+		$sAns = getStudentAnsStr($quizID,$ucid);//student answer string
+		$key = getAnsStr($quizID);//string in answer key
 		$i = 0; //index
 		$scoreval = getQuestionScores($quizID);
 		$score = 0;
+		$possible = 0;
 		$x = substr($sAns, $i, 1);
-		$y = substr($key, $i , 1);
-		while($x!=NULL&&$y!=NULL){
+		$y = substr($key, $i, 1);
+		$len = strlen($key);
+		while($x!=NULL&&$y!=NULL&& $i<$len){
 			$x = substr($sAns, $i, 1);//student answer
 			$y = substr($key, $i , 1);//answer in string
+			$possible += $scoreval[$i];
 			if($x == $y){
 				$score += $scoreval[$i];
 			}
 			$i++;
-		}
+		}return ($score/$possible)*100;
 	}
 	function insertGrade($crn,$type,$id){//inserts grade into table
 		$type;// either quiz assignment or total grade
@@ -84,18 +106,18 @@
 		//TODO
 	}
 	function getChildren($postID){//get children of whatever postID u want
-		$q = "SELECT * FROM forums WHERE parent='".$postID."'";
+		$q = "SELECT * FROM forums WHERE parent = '".$postID."'";
 		$con = new mysqli(db_host, db_user, db_pass, db_name);
 		$result = $con->query($q);
 		$children = array();
 		while ($row = mysqli_fetch_assoc($result)){
 			$children[]= getPostInfo($row['ID']);
-			return $children;
-		}	
+			
+		}return $children;
 	}
 	function getPostInfo($postID){
 		$data = array();
-		$q = "SELECT * FROM forums WHERE ID='".$postID."'";
+		$q = "SELECT * FROM forums WHERE ID = '".$postID."'";
 		$con = new mysqli(db_host, db_user, db_pass, db_name);
 		$result = $con->query($q);
 		if($result){

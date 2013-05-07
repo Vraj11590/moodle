@@ -86,3 +86,21 @@ tests insert functions as prof. theo for CS490-001 CRN:4<hr>
 		<input type="file" name="file" id="file"><br>
 		<input type="submit" name="submit" value="Submit">
 	</form>	
+		</form><hr>
+	Test getAnsString: compare this string to student answer string for grading
+	<form id="test7form" action="test.php?f=ansStr" method="post">
+		<input type="text" name="quizID" placeholder="Enter quizID to get answers..."/>
+		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
+	</form><hr>
+	Test studentAnswer
+	<form id="test7form" action="test.php?f=sAnsStr" method="post">
+		<input type="text" name="quizID" placeholder="Enter quizID to get answers..."/>
+		<input type="text" name="sucid" placeholder="Enter UCID to grade submisison.."/>
+		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
+	</form><hr>
+Test gradeQuiz
+	<form id="test7form" action="test.php?f=gradeQuiz" method="post">
+		<input type="text" name="quizID" placeholder="Enter quizID to get answers..."/>
+		<input type="text" name="sucid" placeholder="Enter UCID to grade submisison.."/>
+		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
+	</form><hr>

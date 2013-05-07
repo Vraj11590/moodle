@@ -3,15 +3,19 @@
 	if(isset($_GET['f'])){
 		$f = $_GET['f'];
 		
-		if($f=='insertPost'){
-			
+		if(isset($_POST['quizID'])){
+			$quizID = $_POST['quizID'];
+		}
+		if(isset($_POST['ucid'])){
 			$ucid = $_POST['ucid'];
+		}
+		
+		if($f=='insertPost'){
 			$crn = $_POST['crn'];
 			$title = $_POST['title'];
 			$content = $_POST['content'];
 			if(isset($_POST['parent'])){
 				$parent = $_POST['parent'];
-				
 			}else $parent = 0;
 			insertPost($ucid,$crn,$title,$content,$parent);
 		}
@@ -34,7 +38,6 @@
 		}
 		
 		if($f=='createQQ'){
-			$quizID = $_POST['quizID'];
 			$question = $_POST['question'];
 			$a = $_POST['a'];
 			$b = $_POST['b'];
@@ -47,7 +50,6 @@
 		
 		if($f=='getQS'){
 			if($type == 't'){
-				$quizID = $_POST['quizID'];
 				//debug print line
 				print_r(getQuestionScores($quizID));
 			}else echo 'Access Denied: Not a Teacher';
@@ -81,15 +83,24 @@
 					echo "Stored in: " . "../upload/" . $_FILES["file"]["name"];
 				}
 			}
-	
+			
 		}
 		if($f=='encPosts'){
 			$postID = $_POST['postID'];
 			echo encodePosts($postID);
-			}
+		}
+		if($f=='ansStr'){
+			echo getAnsStr($quizID);
+		}
+		if($f=='gradeQuiz'){
+			$sucid = $_POST['sucid'];
+			echo gradeQuiz($quizID,$sucid);
+		}
+		if($f=='sAnsStr'){
+			$sucid = $_POST['sucid'];
+			echo getStudentAnsStr($quizID,$sucid);
+		}
 	}
-
-	
 	else{
 		$arr = array('ucid' => $_POST['ucid']);
 	}
