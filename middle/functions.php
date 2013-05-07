@@ -78,20 +78,36 @@
 	function insertGrade($crn,$type,$id){//inserts grade into table
 		$type;// either quiz assignment or total grade
 		//TODO
-		}
+	}
+	
+	function insertFileData($path,$type,$owner){//inserts metadata of file into table
+		//TODO
+	}
 	function getChildren($postID){//get children of whatever postID u want
-		$con = new mysqli(db_host, db_user, db_pass, db_name); 
 		$q = "SELECT * FROM forums WHERE parent='".$postID."'";
+		$con = new mysqli(db_host, db_user, db_pass, db_name);
 		$result = $con->query($q);
 		$children = array();
 		while ($row = mysqli_fetch_assoc($result)){
-			$children[]=array('postID'=> $row['ID'],'user'=>$row['ucid'],
-							'title'=> $row['title'],
-							'content' => $row['content']);
-		}
-		return $children;
+			$children[]= getPostInfo($row['ID']);
+			return $children;
+		}	
 	}
-	function insertFileData($path,$type,$owner){//inserts metadata of file into table
-		//TODO
-		}
-?>
+	function getPostInfo($postID){
+		$data = array();
+		$q = "SELECT * FROM forums WHERE ID='".$postID."'";
+		$con = new mysqli(db_host, db_user, db_pass, db_name);
+		$result = $con->query($q);
+		if($result){
+			$row = mysqli_fetch_assoc($result);
+			$data[] = array('postID'=> $row['ID'],
+			'user'=>$row['ucid'],
+			'title'=> $row['title'],
+			'content' => $row['content'],
+			'children' => getChildren($row['ID']));
+		} return $data;
+	}
+	function encodePosts($postID){
+		return json_encode(getChildren($postID));
+	}
+?>			

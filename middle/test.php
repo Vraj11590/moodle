@@ -74,6 +74,11 @@ tests insert functions as prof. theo for CS490-001 CRN:4<hr>
 		<input type="text" name="postID" placeholder="Enter postID to get children..."/>
 		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
 	</form><hr>
+	Test encodePosts function: returns all children of posts and the childrens children encoded in json!
+	<form id="test7form" action="test.php?f=encPosts" method="post">
+		<input type="text" name="postID" placeholder="Enter postID to get children..."/>
+		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
+	</form><hr>
 	File Upload Test:
 	<form action="test.php?f=upload" method="post"
 	enctype="multipart/form-data">

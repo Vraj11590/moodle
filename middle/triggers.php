@@ -83,18 +83,16 @@
 			}
 	
 		}
+		if($f=='encPosts'){
+			$postID = $_POST['postID'];
+			echo encodePosts($postID);
+			}
 	}
 
-	// if(isset($_POST['semesterid'])){
-	// $arr = array('ucid' => $_POST['ucid'], 'semesterid' => $_POST['semesterid']);
-	// }
+	
 	else{
 		$arr = array('ucid' => $_POST['ucid']);
 	}
-	
-	// $arr = array('ucid' => $_POST['ucid']);
-	// $functionCall=true;
-	// getJSON($f,$arr,$urlPath);
 	
 ?>
 
