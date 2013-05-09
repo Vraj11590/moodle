@@ -42,9 +42,9 @@
 		runQuery($q);
 	}
 	function getAssignments($crn){
-	$q = "SELECT * FROM assignments WHERE crn = '".$crn."'";
-	$result = runQuery($q);
-	return getElements($result);
+		$q = "SELECT * FROM assignments WHERE crn = '".$crn."'";
+		$result = runQuery($q);
+		return getElements($result);
 	}
 	function createQuiz($name,$crn){//insert entry into quiz master table then creates new table for quiz
 		$q = "INSERT INTO quizmaster (name,crn)
@@ -133,16 +133,32 @@
 			'children' => getChildren($row['ID']));
 		} return $data;
 	}
-	function getQuiz($quizID){//returns all quiz questions
+	function getQuizQuestions($quizID){//returns all quiz questions
+		$q = "SELECT * FROM quizquestions WHERE quizID = '".$quizID."'";
+		$result = runQuery($q);
 		
+		while($x = mysqli_fetch_assoc($result)){
+			$res[] = $x;
+		} 
+		if($res) return $res;
 	}
-	function getQuizList($crn){//returns lists of quizzes for a class
-		$q = "SELECT * FROM quizmaster WHERE crn = '".$crn."'";
+	function getQuizInfo($crn){//returns lists of quizzes for a class
+		$q = "SELECT ID, name, due FROM quizmaster WHERE crn = '".$crn."'";
+		$result = runQuery($q);
+		while($x = mysqli_fetch_assoc($result)){
+			$a[]= array('name' => $x['name'],
+			'due' => $x['due'],
+			'questions' => getQuizQuestions($x['ID']));
+		}
+		return $a;
 	}
 	function encodePosts($postID){//encodes posts in json array
 		return json_encode(getPostInfo($postID));
 	}
 	function encodeAssignments($crn){//encodes posts in json array
 		return json_encode(getAssignments($crn));
+	}
+	function encodeQuizData($crn){
+		return json_encode(getQuizInfo($crn));
 	}
 ?>			

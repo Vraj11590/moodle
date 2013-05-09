@@ -97,13 +97,18 @@
 		}
 		if ($f == 'encodeAssignments'){
 			echo encodeAssignments($crn);
-			
+			}
+			if ($f == 'encodeQuizData'){
+			echo encodeQuizData($crn);
 			}
 		if($type == 't'){//teacher only functions go inside here
 			
 		}//else echo 'Access Denied: Not a Teacher';
 		
 		if($debug == true){
+			if($f=='quizList'){
+				print_r(getQuizList($crn));
+				}
 			if($f=='gradeQuiz'){
 				$sucid = $_POST['sucid'];
 				echo gradeQuiz($quizID,$sucid);
@@ -111,6 +116,9 @@
 			if($f=='ansStr'){
 				echo getAnsStr($quizID);
 			}
+			if($f=='getAssignments'){
+				print_r(getAssignments($crn));
+				}
 			if($f=='sAnsStr'){
 				$sucid = $_POST['sucid'];
 				echo getStudentAnsStr($quizID,$sucid);
