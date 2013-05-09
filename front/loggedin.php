@@ -1,28 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <?php
-
-
 	include('../resources/header.php');
 	include('return.php');
 	
 	$arr = array('ucid' => $_GET['ucid']);
 	//echo '<br><a a href = '.$urlPath.'/front/index.php?logout> Logout </a><br>';
 	//echo'<a a href = '.$urlPath.'> Check Session </a>';
-
-	
 ?>
 
 <html>    
 <head>
     <title> Moodle++ </title>
-
     <link href="css/structure.css" rel="stylesheet" type="text/css">
     <script src="js/jquery.js"></script>   
     <!--<script src="js/main.js" type="text/javascript"> </script>-->
 
 </head>    
-
 <body>
     <div id="container">
 		<div id="header">	
@@ -38,18 +32,14 @@
 				<select id="sel_semester"></select>
 			</div>
 			<div id = "courses"></div>
-			
 			<div id = "links">
-				
 				<a href = "forum/forum.php" id="forum"> Class Forum </a><br>
 				<a href = "assignments.php" id="assignment"> Class Assignments </a><br>
 				<a href = "grades.php" id="grades"> Grades </a><br>
 				<a href = "cinfo.php" id="cinfo"> Course Information </a><br>
-
 			</div>
 			<br>
 			<div id = "upcoming">
-			
 				<b> <label> <font color="red"> Upcoming Deadlines </font> <label> </b>
 				<hr>
 				Friday - PHYS111-003 Homework 5 Due! 
@@ -85,9 +75,37 @@
     <script>
 	var classarray;
 	var selectedcrn;
+	var semester;
 	var urlpath = "<?php echo $urlPath; ?>";
 	var ucid = "<?php echo ( $_GET['ucid'] ); ?>";
 	console.log (urlpath);
+	window.onload = getSemester(ucid);
+	
+	
+	function getSemester(ucid)
+	{
+		urltocall = urlpath + "/back/get.php?f=getSemesters"
+		//alert(urltocall);
+		$.ajax({
+					url: urltocall,
+					data: {ucid:ucid},
+					type: "post",
+					dataType: "json",
+					async: false,
+					success: function(output)
+					{
+											console.log(output);
+											semester=output;
+					}
+				});
+	}
+	
+	
+	
+	
+	
+	
+	
 	$("#title").hide();
 	$('#cinfo').on('click', function(e){
 			//alert("link clicked");
@@ -188,7 +206,6 @@
 	
 
 
-	var semester =  <?php echo ( getJSON('getSemesters',$arr,$urlPath) ); ?> ;
 	var len = semester.semesters.length;
 	//alert(len);
 	

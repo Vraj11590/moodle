@@ -1,0 +1,24 @@
+/* @group elements */
+* { margin: 0; padding: 0; }
+html { height: 101%; font-family: Arial, Tahoma, sans-serif; }
+body { font-size: 12px; background: #e8f0f7; line-height: 20px; word-spacing: 0.5px; }
+
+
+
+#container{}
+    #header{margin:0 auto; width:95%;}
+        #userpanel{padding: 2px; background-color: #eee9d5; }
+          
+	
+	#nav{float:left; margin-top:10px; width:200px; margin-left:60px;}	
+		#semesters{padding: 5px; background-color: #eee9d5;}	
+		#courses{padding:2px; background-color:#eee9d5; text-align:center;}
+		#links{padding:2px; background-color:#eee9d5; text-align:center;}
+		#upcoming{padding:2px; background-color:#eee9d5; text-align:center;}
+		#participants{padding:2px; background-color:#eee9d5; text-align:center;}
+		
+	#dynadiv{float:right; margin: 0 auto; margin-top:10px; padding:2px; background-color:#eee9d5; width:800px; margin-right:100px; }
+
+	#content{float:right; margin: 0 auto; margin-top:10px; padding:2px; background-color:#eee9d5; width:800px; margin-right:100px; height:500px; }
+		#title{background-color:white; width:350px;}
+		

@@ -34,5 +34,8 @@
 			header("Location: ".$result['url']);
 			
 		}
+		else if($result == null){
+			echo "ERROR";
+		}
 	}
 	?>
