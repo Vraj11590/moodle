@@ -40,6 +40,18 @@
   return array('classes' => getElements($q));
  }
  
+  ///function to get participant in each class
+ 
+ function getParticipant($crn){
+  $q= "SELECT 	u.ucid AS studentid, u.name AS name, u.email AS studentEmail, u.phone AS studentPhone
+		FROM 	enrolled AS e, users AS u
+		WHERE 	e.crn =  '".$crn."'
+		AND 	e.ucid = u.ucid
+      
+     ";
+
+  return array('participant' => getElements($q));
+ }
  ///function to get posts in each class
  
  function getPosts($crn){
@@ -194,6 +206,12 @@ function AddAssignment($crn,$name,$content,$deadline){
    $s = $_POST['semesterid'];
    echo json_encode(getClasses($u,$s));
  
+  }
+    if($f == 'getParticipant'){
+   $c = $_POST['crn'];
+   
+   echo json_encode(getParticipant($c));
+   
   }
   if($f == 'getPosts'){
    $c = $_POST['crn'];
