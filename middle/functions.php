@@ -31,11 +31,7 @@
 		}
 		return $a;
 	}
-	function insertPost($ucid,$crn,$title,$content,$parent){//add parent functionality later
-		$q ="INSERT INTO forum (crn, ucid, title, content, parent)
-		VALUES ('".$crn."','".$ucid."','".$title."','".$content."','".$parent."')";
-		runQuery($q);
-	}
+	//ASSIGNMENT FUNCTIONS
 	function insertAssignment($name,$crn,$content,$deadline){// insert assignment into table
 		$q ="INSERT INTO assignments(crn, assign_name, assign_content, assign_deadline)
 		VALUES ('".$crn."','".$name."','".$content."','".$deadline."')";
@@ -50,6 +46,27 @@
 		$result = runQuery($q);
 		return getElements($result);
 	}
+	function encodeAssignments($crn){//encodes posts in json array
+		return json_encode(getAssignments($crn));
+	}	
+	function getUpcomingAssns($crn){
+		$now = new DateTime('now');
+		$bound = new DateTime('now');
+		$bound->add(new DateInterval('P30D'));//one month interval
+		$now = $now->format('Y-m-d');
+		$bound = $bound->format('Y-m-d');
+		$q = "SELECT * FROM assignments WHERE crn = '".$crn."'";
+		$result = runQuery($q);
+		while($a = mysqli_fetch_assoc($result)){
+			$x = $a['assign_deadline'];
+			if($x > $now && $x < $bound){
+				$res[]=$a;
+			}
+		}
+		return $res;
+	}
+	//END ASSIGNMENT FUNCTIONS
+	//QUIZ FUNCTIONS
 	function createQuiz($name,$crn){//insert entry into quiz master table then creates new table for quiz
 		$q = "INSERT INTO quizmaster (name,crn)
 		VALUES ('".$name."','".$crn."')";
@@ -111,6 +128,30 @@
 			$i++;
 		}return ($score/$possible)*100;
 	}
+	function getQuizQuestions($quizID){//returns all quiz questions
+		$q = "SELECT * FROM quizquestions WHERE quizID = '".$quizID."'";
+		$result = runQuery($q);
+		
+		while($x = mysqli_fetch_assoc($result)){
+			$res[] = $x;
+		} 
+		if($res) 
+		return $res;
+	}
+	function getQuizInfo($crn){//returns lists of quizzes for a class
+		$q = "SELECT ID, name, due FROM quizmaster WHERE crn = '".$crn."'";
+		$result = runQuery($q);
+		while($x = mysqli_fetch_assoc($result)){
+			$a[]= array('name' => $x['name'],
+			'due' => $x['due'],
+			'questions' => getQuizQuestions($x['ID']));
+		}
+		return $a;
+	}
+	function encodeQuizData($crn){
+		return json_encode(getQuizInfo($crn));
+	}
+	//END QUIZ FUNCTIONS
 	function insertGrade($type,$id,$ucid,$value,$date){//inserts grade into table value will be from gradequiz
 		$type;// either quiz assignment or total grade
 		if($type =='assignment'){
@@ -129,7 +170,7 @@
 	function insertFileData($path,$type,$owner){//inserts metadata of file into table
 		//TODO
 	}
-	//BEGIN FORUM FUNCTIONS
+	//FORUM FUNCTIONS
 	function getChildren($postID){//get children of whatever postID u want
 		$q = "SELECT * FROM forum WHERE parent = '".$postID."'";
 		$children = array();
@@ -160,50 +201,13 @@
 		if($res) 
 		return $res;
 	}
-	//END FORUM FUNCTIONS
-	function getQuizQuestions($quizID){//returns all quiz questions
-		$q = "SELECT * FROM quizquestions WHERE quizID = '".$quizID."'";
-		$result = runQuery($q);
-		
-		while($x = mysqli_fetch_assoc($result)){
-			$res[] = $x;
-		} 
-		if($res) 
-		return $res;
-	}
-	function getQuizInfo($crn){//returns lists of quizzes for a class
-		$q = "SELECT ID, name, due FROM quizmaster WHERE crn = '".$crn."'";
-		$result = runQuery($q);
-		while($x = mysqli_fetch_assoc($result)){
-			$a[]= array('name' => $x['name'],
-			'due' => $x['due'],
-			'questions' => getQuizQuestions($x['ID']));
-		}
-		return $a;
+	function insertPost($ucid,$crn,$title,$content,$parent){//add parent functionality later
+		$q ="INSERT INTO forum (crn, ucid, title, content, parent)
+		VALUES ('".$crn."','".$ucid."','".$title."','".$content."','".$parent."')";
+		runQuery($q);
 	}
 	function encodePosts($crn){//encodes posts in json array
 		return json_encode(getForumData($crn));
 	}
-	function encodeAssignments($crn){//encodes posts in json array
-		return json_encode(getAssignments($crn));
-	}
-	function encodeQuizData($crn){
-		return json_encode(getQuizInfo($crn));
-	}
-	function getUpcomingAssns($crn){
-		$now = new DateTime('now');
-		$bound = new DateTime('now');
-		$bound->add(new DateInterval('P30D'));//one month interval
-		$now = $now->format('Y-m-d');
-		$bound = $bound->format('Y-m-d');
-		$q = "SELECT * FROM assignments WHERE crn = '".$crn."'";
-		$result = runQuery($q);
-		while($a = mysqli_fetch_assoc($result)){
-			$x = $a['assign_deadline'];
-			if($x > $now && $x < $bound){
-				$res[]=$a;
-				}
-			}
-		return $res;
-	}
+	//END FORUM FUNCTIONS	
 ?>

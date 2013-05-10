@@ -5,7 +5,7 @@
 		$f = $_GET['f'];
 		$type = $_POST['type'];
 		$debug = $_POST['debug'];
-		
+		//var check-set block
 		if(isset($_POST['quizID'])){
 			$quizID = $_POST['quizID'];
 		}
@@ -21,6 +21,10 @@
 		if(isset($_POST['crn'])){
 			$crn = $_POST['crn'];
 		}
+		if(isset($_POST['id']){
+			$id = $_POST['id'];
+		}
+		
 		if($f=='insertPost'){
 			$title = $_POST['title'];
 			$content = $_POST['content'];
@@ -102,7 +106,10 @@
 		}
 		if( $f == 'encodeUA'){//encodes upcoming assignments
 			echo json_encode(getUpcomingAssns($crn));
-			}
+		}
+		if($f =='deleteAssn'){//post assignment id and will delete from DB
+			deleteAssignment($id);
+		}
 		if($type == 't'){//teacher only functions go inside here
 			
 		}//else echo 'Access Denied: Not a Teacher';
