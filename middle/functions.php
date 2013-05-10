@@ -107,8 +107,16 @@
 			$i++;
 		}return ($score/$possible)*100;
 	}
-	function insertGrade($crn,$type,$id,$value){//inserts grade into table value will be from gradequiz
+	function insertGrade($type,$id,$ucid,$value,$date){//inserts grade into table value will be from gradequiz
 		$type;// either quiz assignment or total grade
+		if($type =='assignment'){
+			$q = "INSERT INTO assignsub (assignid,ucid,grade,submitted)
+			VALUES ('".$id."','".$ucid."','".$value."','".$date."')";
+			}
+		if($type == 'quiz'){
+			$q = "UPDATE quizans SET grade = '".$value."' WHERE qid = '".$id."' 
+															AND ucid = '".$ucid."'";
+			}
 		//TODO
 	}
 	function insertFileData($path,$type,$owner){//inserts metadata of file into table
@@ -116,6 +124,7 @@
 	}
 	function getChildren($postID){//get children of whatever postID u want
 		$q = "SELECT * FROM forum WHERE parent = '".$postID."'";
+		$children = array();
 		$result = runQuery($q);
 		while ($row = mysqli_fetch_assoc($result)){
 			$children[]= getPostInfo($row['ID']);
@@ -140,7 +149,8 @@
 		while($x = mysqli_fetch_assoc($result)){
 			$res[] = $x;
 		} 
-		if($res) return $res;
+		if($res) 
+			return $res;
 	}
 	function getQuizInfo($crn){//returns lists of quizzes for a class
 		$q = "SELECT ID, name, due FROM quizmaster WHERE crn = '".$crn."'";
@@ -152,13 +162,22 @@
 		}
 		return $a;
 	}
-	function encodePosts($postID){//encodes posts in json array
-		return json_encode(getPostInfo($postID));
+	function encodePosts($crn){//encodes posts in json array
+		return json_encode(getForumData($crn));
 	}
 	function encodeAssignments($crn){//encodes posts in json array
 		return json_encode(getAssignments($crn));
 	}
 	function encodeQuizData($crn){
 		return json_encode(getQuizInfo($crn));
+	}
+	function getForumData($crn){
+		$q = "SELECT * FROM forum WHERE  crn  = '".$crn."' AND parent = 0";
+		$result = runQuery($q);
+		while($x = mysqli_fetch_assoc($result)){
+			$res[] = getPostInfo($x['ID']);
+		} 
+		if($res) 
+			return $res;
 	}
 ?>			

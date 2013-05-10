@@ -93,7 +93,7 @@
 			
 		}
 		if($f=='encPosts'){
-			echo encodePosts($postID);
+			echo encodePosts($crn);
 		}
 		if ($f == 'encodeAssignments'){
 			echo encodeAssignments($crn);
@@ -106,6 +106,9 @@
 		}//else echo 'Access Denied: Not a Teacher';
 		
 		if($debug == true){
+			if ($f == 'getForumData'){
+				print_r(getForumData($crn));
+				}
 			if($f=='quizList'){
 				print_r(getQuizList($crn));
 				}

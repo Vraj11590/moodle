@@ -82,7 +82,7 @@ tests insert functions as prof. theo for CS490-001 CRN:4<hr>
 	</form><hr>
 	Test encodePosts function: returns all children of posts and the childrens children encoded in json!
 	<form id="test7form" action="test.php?f=encPosts" method="post">
-		<input type="text" name="postID" placeholder="Enter postID to get children..."/>
+		<input type="text" name="crn" placeholder="Enter crn to get data..."/>
 		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
 	</form><hr>
 	File Upload Test:
@@ -122,6 +122,11 @@ Test getQuizList
 	</form><hr>
 Test encodeQuizData
 	<form id="test7form" action="test.php?f=encodeQuizData" method="post">
+		<input type="text" name="crn" placeholder="crn"/>
+		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
+	</form><hr>
+Test getTopics
+<form id="test7form" action="test.php?f=getForumData" method="post">
 		<input type="text" name="crn" placeholder="crn"/>
 		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
 	</form><hr>
