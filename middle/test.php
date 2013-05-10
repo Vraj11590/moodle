@@ -125,8 +125,8 @@ Test encodeQuizData
 		<input type="text" name="crn" placeholder="crn"/>
 		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
 	</form><hr>
-Test getTopics
-<form id="test7form" action="test.php?f=getForumData" method="post">
+Test getUA
+<form id="test7form" action="test.php?f=getUA" method="post">
 		<input type="text" name="crn" placeholder="crn"/>
 		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
 	</form><hr>

@@ -36,9 +36,13 @@
 		VALUES ('".$crn."','".$ucid."','".$title."','".$content."','".$parent."')";
 		runQuery($q);
 	}
-	function insertAssignment($name,$content,$deadline){// insert assignment into table
-		$q ="INSERT INTO assignments(assign_name, assign_content, assign_deadline)
-		VALUES ('".$name."','".$content."','".$deadline."')";
+	function insertAssignment($name,$crn,$content,$deadline){// insert assignment into table
+		$q ="INSERT INTO assignments(crn, assign_name, assign_content, assign_deadline)
+		VALUES ('".$crn."','".$name."','".$content."','".$deadline."')";
+		runQuery($q);
+	}
+	function deleteAssignment($id){
+		$q = "DELETE FROM assignments WHERE id = '".$id."'";
 		runQuery($q);
 	}
 	function getAssignments($crn){
@@ -112,16 +116,20 @@
 		if($type =='assignment'){
 			$q = "INSERT INTO assignsub (assignid,ucid,grade,submitted)
 			VALUES ('".$id."','".$ucid."','".$value."','".$date."')";
-			}
+		}
 		if($type == 'quiz'){
 			$q = "UPDATE quizans SET grade = '".$value."' WHERE qid = '".$id."' 
-															AND ucid = '".$ucid."'";
-			}
-		//TODO
+			AND ucid = '".$ucid."'";
+		}
+		if($type == 'total'){
+			//TODO insert values into final grade table 
+		}
+		runQuery($q);
 	}
 	function insertFileData($path,$type,$owner){//inserts metadata of file into table
 		//TODO
 	}
+	//BEGIN FORUM FUNCTIONS
 	function getChildren($postID){//get children of whatever postID u want
 		$q = "SELECT * FROM forum WHERE parent = '".$postID."'";
 		$children = array();
@@ -139,9 +147,20 @@
 			'user'=>$row['ucid'],
 			'title'=> $row['title'],
 			'content' => $row['content'],
+			'date' => $row['date'],
 			'children' => getChildren($row['ID']));
 		} return $data;
 	}
+	function getForumData($crn){
+		$q = "SELECT * FROM forum WHERE  crn  = '".$crn."' AND parent = 0";
+		$result = runQuery($q);
+		while($x = mysqli_fetch_assoc($result)){
+			$res[] = getPostInfo($x['ID']);
+		} 
+		if($res) 
+		return $res;
+	}
+	//END FORUM FUNCTIONS
 	function getQuizQuestions($quizID){//returns all quiz questions
 		$q = "SELECT * FROM quizquestions WHERE quizID = '".$quizID."'";
 		$result = runQuery($q);
@@ -150,7 +169,7 @@
 			$res[] = $x;
 		} 
 		if($res) 
-			return $res;
+		return $res;
 	}
 	function getQuizInfo($crn){//returns lists of quizzes for a class
 		$q = "SELECT ID, name, due FROM quizmaster WHERE crn = '".$crn."'";
@@ -171,13 +190,11 @@
 	function encodeQuizData($crn){
 		return json_encode(getQuizInfo($crn));
 	}
-	function getForumData($crn){
-		$q = "SELECT * FROM forum WHERE  crn  = '".$crn."' AND parent = 0";
-		$result = runQuery($q);
-		while($x = mysqli_fetch_assoc($result)){
-			$res[] = getPostInfo($x['ID']);
-		} 
-		if($res) 
-			return $res;
+	function getUpcomingAssns($crn){
+		$now = new DateTime('now');
+		$
+		$bound = $now->add(new DateInterval('P30D'));
+		$now = $now->format('Y-m-d');
+		return $now;
 	}
-?>			
+?>

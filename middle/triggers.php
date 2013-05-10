@@ -35,7 +35,7 @@
 			$name = $_POST['name'];
 			$content = $_POST['content'];
 			$deadline = $_POST['deadline'];
-			insertAssignment($name,$content,$deadline);
+			insertAssignment($name,$crn,$content,$deadline);
 		}
 		
 		if($f=='createQuiz'){
@@ -105,7 +105,7 @@
 			
 		}//else echo 'Access Denied: Not a Teacher';
 		
-		if($debug == true){
+		if($debug == true){//debug only functions
 			if ($f == 'getForumData'){
 				print_r(getForumData($crn));
 				}
@@ -129,6 +129,9 @@
 			if($f=='getPostInfo'){
 				print_r(getPostInfo($postID));
 			}
+			if($f=='getUA'){
+				print_r(getUpcomingAssns($crn));
+				}
 		}
 		
 	}
