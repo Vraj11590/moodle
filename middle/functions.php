@@ -32,7 +32,7 @@
 		return $a;
 	}
 	//ASSIGNMENT FUNCTIONS
-	function insertAssignment($name,$crn,$content,$deadline){// insert assignment into table
+	function insertAssignment($name,$crn,$content,$deadline){// insert assignment into DB
 		$q ="INSERT INTO assignments(crn, assign_name, assign_content, assign_deadline)
 		VALUES ('".$crn."','".$name."','".$content."','".$deadline."')";
 		runQuery($q);
@@ -67,7 +67,7 @@
 	}
 	//END ASSIGNMENT FUNCTIONS
 	//QUIZ FUNCTIONS
-	function createQuiz($name,$crn){//insert entry into quiz master table then creates new table for quiz
+	function createQuiz($name,$crn){//insert entry into quiz master table
 		$q = "INSERT INTO quizmaster (name,crn)
 		VALUES ('".$name."','".$crn."')";
 		runQuery($q);
@@ -98,7 +98,7 @@
 			$ansStr.=$row['quiz_ans'];
 		}	return $ansStr;
 	}
-	function getStudentAnsStr($quizID,$ucid){
+	function getStudentAnsStr($quizID,$ucid){//returns student answer string for grading
 		$q = "SELECT student_ans FROM quizans WHERE qid = '".$quizID."' AND ucid = '".$ucid."'";
 		$result = runQuery($q);
 		$ans='wat';
@@ -167,7 +167,7 @@
 		}
 		runQuery($q);
 	}
-	function insertFileData($path,$type,$owner){//inserts metadata of file into table
+	function insertFileData($path,$type,$owner){//TODO inserts metadata of file into table
 		//TODO
 	}
 	//FORUM FUNCTIONS

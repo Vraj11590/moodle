@@ -1,5 +1,5 @@
 <h1>CONTROL TEST PAGE</h1>
-tests insert functions as prof. theo for CS490-001 CRN:4<hr>
+tests functions as prof. theo for CS490-001 CRN:4<hr>
 <b>NOTES:</b><br>
 	Made new tables:<br>
 	forums: ID, crn, ucid, title, parent<br>
@@ -125,7 +125,7 @@ Test encodeQuizData
 		<input type="text" name="crn" placeholder="crn"/>
 		<input type="submit" value="test" name="gctest" style="padding:5px;"/>
 	</form><hr>
-Test getUA
+Test getUpcoming Assignments
 <form id="test7form" action="test.php?f=getUA" method="post">
 		<input type="text" name="crn" placeholder="crn"/>
 		<input type="submit" value="test" name="gctest" style="padding:5px;"/>

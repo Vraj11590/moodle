@@ -1,11 +1,9 @@
 <?php
-	
 	if(isset($_GET['f'])){
 		
 		$f = $_GET['f'];
 		$type = $_POST['type'];
-		$debug = $_POST['debug'];
-		//var check-set block
+		//vcheck-set block for commonly used vars
 		if(isset($_POST['quizID'])){
 			$quizID = $_POST['quizID'];
 		}
@@ -16,12 +14,12 @@
 			$postID = $_POST['postID'];
 		}
 		if(isset($_POST['debug'])){
-			$postID = $_POST['debug'];
+			$debug = $_POST['debug'];
 		}
 		if(isset($_POST['crn'])){
 			$crn = $_POST['crn'];
 		}
-		if(isset($_POST['id']){
+		if(isset($_POST['id'])){
 			$id = $_POST['id'];
 		}
 		
@@ -142,7 +140,6 @@
 				print_r(getUpcomingAssns($crn));
 			}
 		}
-		
 	}
 	
 ?>
