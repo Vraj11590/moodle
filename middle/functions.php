@@ -192,9 +192,18 @@
 	}
 	function getUpcomingAssns($crn){
 		$now = new DateTime('now');
-		$
-		$bound = $now->add(new DateInterval('P30D'));
+		$bound = new DateTime('now');
+		$bound->add(new DateInterval('P30D'));//one month interval
 		$now = $now->format('Y-m-d');
-		return $now;
+		$bound = $bound->format('Y-m-d');
+		$q = "SELECT * FROM assignments WHERE crn = '".$crn."'";
+		$result = runQuery($q);
+		while($a = mysqli_fetch_assoc($result)){
+			$x = $a['assign_deadline'];
+			if($x > $now && $x < $bound){
+				$res[]=$a;
+				}
+			}
+		return $res;
 	}
 ?>

@@ -21,7 +21,6 @@
 		if(isset($_POST['crn'])){
 			$crn = $_POST['crn'];
 		}
-		if($f=='getSemester')
 		if($f=='insertPost'){
 			$title = $_POST['title'];
 			$content = $_POST['content'];
@@ -97,9 +96,12 @@
 		}
 		if ($f == 'encodeAssignments'){
 			echo encodeAssignments($crn);
-			}
-			if ($f == 'encodeQuizData'){
+		}
+		if ($f == 'encodeQuizData'){
 			echo encodeQuizData($crn);
+		}
+		if( $f == 'encodeUA'){//encodes upcoming assignments
+			echo json_encode(getUpcomingAssns($crn));
 			}
 		if($type == 't'){//teacher only functions go inside here
 			
@@ -108,10 +110,10 @@
 		if($debug == true){//debug only functions
 			if ($f == 'getForumData'){
 				print_r(getForumData($crn));
-				}
+			}
 			if($f=='quizList'){
 				print_r(getQuizList($crn));
-				}
+			}
 			if($f=='gradeQuiz'){
 				$sucid = $_POST['sucid'];
 				echo gradeQuiz($quizID,$sucid);
@@ -121,7 +123,7 @@
 			}
 			if($f=='getAssignments'){
 				print_r(getAssignments($crn));
-				}
+			}
 			if($f=='sAnsStr'){
 				$sucid = $_POST['sucid'];
 				echo getStudentAnsStr($quizID,$sucid);
@@ -131,11 +133,11 @@
 			}
 			if($f=='getUA'){
 				print_r(getUpcomingAssns($crn));
-				}
+			}
 		}
 		
 	}
-		
+	
 ?>
 
 
